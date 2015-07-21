@@ -8,25 +8,39 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 	<style type="text/css">
 		.main-jumbo {
-			background-color: rgba(245, 245, 245, 0.8)
+			background-color: rgba(245, 245, 245, 0.8);
+			
+		}
+
+		.jumbo-container {
+			margin-top: 150px;
 		}
 
 		.intro-header {
-			background-size: cover;
+			
 			background: url(background.jpg) no-repeat center center;
-			padding: 200px 0;
+			background-size: cover;
+			max-width: 100%;
+			height: auto;
+			padding-bottom: 200px;
 		}
+
+		.navbar-brand img {
+			height: 150%;
+		}
+
+
 	</style>
 </head>
 <body>
 
-
+<div class="intro-header">
 <div class="container">
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 	    	<div class="navbar-header">
 	      		<a class="navbar-brand" href="#">
-	        		<img style="height: 150%" alt="logo" src="logo.png">
+	        		<img alt="logo" src="logo.png">
 	      		</a>
 	    	</div>
 	  	<form class="navbar-form navbar-left" role="search">
@@ -48,9 +62,9 @@
 		</div>
 	</nav>
 </div>
-<div class="intro-header">
-	<div class="container">
-		<div class="jumbotron row main-jumbo">
+
+	<div class="container jumbo-container">
+		<div class="jumbotron row  main-jumbo">
 			<h1>JAMM || <small>Rock Your Tastebuds</small></h1>
 			<br><br>
 			<form class="mainform form-inline">
