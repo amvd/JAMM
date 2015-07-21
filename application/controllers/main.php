@@ -13,10 +13,7 @@ class Main extends CI_Controller {
 		$this->load->view("index");
 	}
 
-	public function login_reg()
-	{
-		$this->load->view("login-reg");
-	}
+
 
 	public function user_profile()
 	{
