@@ -23,29 +23,18 @@ class Main extends CI_Controller {
 		$this->load->view('user_orders_this_week');
 	}
 
-	public function user_orders_this_month()
+	public function user_orders()
 	{
-		$this->load->view('user_orders_this_month');
+		$this->load->view('partials/orders');
 	}
-
-	public function user_orders_this_lifetime()
-	{
-		$this->load->view('user_orders_this_lifetime');
-	}
-
 
 	public function user_reviews_this_week()
 	{
 		$this->load->view('user_reviews_this_week');
 	}
-	public function user_reviews_this_month()
-	{
-		$this->load->view('user_reviews_this_month');
-	}
-	public function user_reviews_this_lifetime()
-	{
-		$this->load->view('user_reviews_this_lifetime');
-	}
+
+
+
 
 
 

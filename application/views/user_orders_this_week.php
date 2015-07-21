@@ -17,6 +17,13 @@
     <!-- Custom CSS -->
     <link href="/css/shop-homepage.css" rel="stylesheet">
 
+    <style type="text/css">
+    body
+    {
+        padding-top: 70px;
+    }
+    </style>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

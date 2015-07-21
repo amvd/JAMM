@@ -17,6 +17,13 @@
     <!-- Custom CSS -->
     <link href="/css/shop-homepage.css" rel="stylesheet">
 
+    <style type="text/css">
+    body
+    {
+        padding-top: 70px;
+    }
+    </style>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -27,6 +34,17 @@
 </head>
 
 <body>
+
+
+    <header class="business-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="tagline">Chef's Reviews</h1>
+                </div>
+            </div>
+        </div>
+    </header>
 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -60,95 +78,25 @@
         <!-- /.container -->
     </nav>
 
-    <!-- Page Content -->
-    <div class="container">
-
-        <div class="row">
-
-            <div class="col-md-3">
-                <p class="lead">Shop Name</p>
-                <div class="list-group">
-                    <a href="/main/user_orders_this_week" class="list-group-item">This Week</a>
-                    <a href="/main/user_orders_this_month" class="list-group-item">This Month</a>
-                    <a href="/main/user_orders_this_lifetime" class="list-group-item">This Lifetime</a>
-                </div>
-            </div>
-
-            <div class="col-md-9">
-
-                <div class="row">
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="http://placehold.it/300x300" alt="">
-                            <div class="caption">
-                                <h4><a href="#">Dish Name</a>
-                                </h4>
-                                <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
-                            </div>
-                            <div class="ratings">
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="http://placehold.it/300x300" alt="">
-                            <div class="caption">
-                                <h4><a href="#">Dish Name</a>
-                                </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <div class="ratings">
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="http://placehold.it/300x300" alt="">
-                            <div class="caption">
-                                <h4><a href="#">Dish Name</a>
-                                </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <div class="ratings">	
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-    <!-- /.container -->
 
     <div class="container">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Rating</td>
+                <td>Content</td>
+                <td>Date</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td> * * * * *</td>
+                <td>It was great! It was so delicious! yumm!</td>
+                <td>Monday, July 20th, 2015</td>
+            </tr>
+        </tbody>
+    </table>
 
         <hr>
 
