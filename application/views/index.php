@@ -8,12 +8,12 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 	<style type="text/css">
 		.main-jumbo {
-			background-color: rgba(245, 245, 245, 0.8);
+			background-color: rgba(245, 245, 245, 0.9);
 			
 		}
 
 		.jumbo-container {
-			margin-top: 150px;
+			margin-top: 50px;
 		}
 
 /*		.intro-header {
@@ -29,15 +29,16 @@
 			height: 150%;
 		}
 
-		#nav { 
-		    /*background: url(images/intro.png) 50% 0 fixed; */
+/*		#nav { 
+		    background: url(images/intro.png) 50% 0 fixed;
 		    height: auto;  
 		    margin: 0 auto; 
 		    width: 100%; 
 		    position: relative; 
 		    box-shadow: 0 0 50px rgba(0,0,0,0.8);
-		    /*padding: 100px 0;*/
+		    padding: 100px 0;
 		}
+*/
 		#main { 
 		    background: url(assets/images/background.jpg) 50% 0 fixed; 
 /*		    height: auto;  */
@@ -47,7 +48,7 @@
 		    position: relative; 
 		    /*box-shadow: 0 0 50px rgba(0,0,0,0.8);*/
 		    padding-top: 100px;
-		    padding-bottom: 200px;
+		    padding-bottom: 100px;
 		}
 		#rest { 
 		   /* background: url(images/about.png) 50% 0 fixed; */
@@ -57,7 +58,7 @@
 		    position: relative; 
 		    box-shadow: 0 0 50px rgba(0,0,0,0.8);
 		    /*padding: 100px 0;*/
-		    color: #fff;
+		    /*color: #fff;*/
 		}
 
 	</style>
@@ -65,8 +66,9 @@
 <body>
 
 <div class="intro-header">
-<section id="nav" data-speed="6" data-type="background">
-<div class="container">
+<!-- <section id="nav" data-speed="6" data-type="background"> -->
+<section id="main" data-speed="2" data-type="background">
+<!-- <div class="container">
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 	    	<div class="navbar-header">
@@ -93,9 +95,9 @@
         </ul>
 		</div>
 	</nav>
-</div>
-</section>
-<section id="main" data-speed="5" data-type="background">
+</div> -->
+<!-- </section> -->
+
 	<div class="container jumbo-container">
 		<div class="jumbotron row  main-jumbo">
 			<h1>JAMM || <small>Rock Your Tastebuds</small></h1>
@@ -116,14 +118,17 @@
 				<div class="form-group">
 					<button type="submit" value="Search" class="btn btn-success">Submit</button>
 				</div>
-				
 			</form>
+			<br><br>
+			<div class="row">
+				<a href="login_reg" class="col-md-offset-5 btn btn-success">Register or Log In</a>
+			</div>
 		</div>
 	</div>
 </div>
 </section>
 
-<section id="rest" data-speed="2" data-type="background">
+<section id="rest" data-speed="4" data-type="background">
 <div class="container">
 	<hr class="section-heading-spacer">
 	<div class="row">
