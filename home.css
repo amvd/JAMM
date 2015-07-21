@@ -1,0 +1,27 @@
+.intro-header {
+	background-size: cover;
+	background: url(background.jpg) no-repeat center center;
+	padding: 200px 0;
+}
+
+/*.intro-header h1 {
+	text-align: center;
+}
+
+.centerform {
+	text-align: center;
+	margin: auto;
+}
+
+.centerinput {
+	margin: auto;
+}*/
+
+/*.centerinput * {
+	margin: 7px;
+
+}*/
+
+/*.mainform {
+	margin: 30px;
+}*/

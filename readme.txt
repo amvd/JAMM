@@ -1,1 +1,0 @@
-Repository for JAMM project.
