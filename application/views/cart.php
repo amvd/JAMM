@@ -29,8 +29,14 @@
 		/*text-align: right;*/
 		/*font-style: italic;*/
 	}
+	#instructions{
+		display: inline-block;
+		vertical-align: top;
+	}
 	#checkout{
 		text-align: right;
+		display: inline-block;
+		vertical-align: top;
 	}
 
 	</style>
@@ -71,10 +77,20 @@
 					<td>$7.99</td>
 				</tr>
 			</table>
-			<div id = "checkout">
-				<p>Subtotal (2 items): $15.98</p>
-				<input type="submit" class="btn btn-warning" value="I'm ready to check out!">
-			</div>				
+			<div>
+			<form role = "form">
+				<div id="instructions" class="col-sm-4">
+					  <label class="control-label ">Special instructions for the chef...</label>
+				      <textarea class="form-control" rows = "3" id="instructions_text">
+				      </textarea>
+				      </div>
+				
+				<div id = "checkout" class="col-sm-8">
+					<p>Subtotal (2 items): $15.98</p>
+					<input type="submit" class="btn btn-warning" value="I'm ready to check out!">
+				</div>
+			</form>		
+			</div>			
 		</div>
 	</body>
 </html>
