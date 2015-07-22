@@ -9,11 +9,9 @@
 	<style type="text/css">
 		.main-jumbo {
 			background-color: rgba(245, 245, 245, 0.9);
-			
 		}
-
 		.jumbo-container {
-			margin-top: 50px;
+			margin-top: 200px;
 		}
 
 /*		.intro-header {
@@ -39,16 +37,27 @@
 		    padding: 100px 0;
 		}
 */
+
+		#nav { 
+		    /*background: url(images/intro.png) 50% 0 fixed;*/
+		    /*height: auto;  
+		    margin: 0 auto;*/ 
+		    width: 100%; 
+		    position: relative; 
+		    /*box-shadow: 0 0 50px rgba(0,0,0,0.8);
+		    padding: 100px 0;*/
+		}
+
 		#main { 
-		    background: url(assets/images/background.jpg) 50% 0 fixed; 
+		    background: url(assets/images/background.jpg) no-repeat center center; 
 /*		    height: auto;  */
 		    margin: 0 auto; 
 /*		    width: 100%; */
 			background-size: cover;
 		    position: relative; 
 		    /*box-shadow: 0 0 50px rgba(0,0,0,0.8);*/
-		    padding-top: 100px;
-		    padding-bottom: 100px;
+		    /*padding-top: 100px;*/
+		    padding-bottom: 200px;
 		}
 		#rest { 
 		   /* background: url(images/about.png) 50% 0 fixed; */
@@ -66,6 +75,9 @@
 <body>
 
 <div class="intro-header">
+<section id="nav" data-speed="6" data-type="background">
+	
+</section>
 <!-- <section id="nav" data-speed="6" data-type="background"> -->
 <section id="main" data-speed="2" data-type="background">
 <!-- <div class="container">
@@ -97,7 +109,18 @@
 	</nav>
 </div> -->
 <!-- </section> -->
-
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-md-offset-8">
+				<div class="btn-group" role="group">
+					<a class="btn btn-success" href="Users/user_profile">User Profile</a>
+					<a class="btn btn-success" href="Chefs/chef_profile">Chef Profile</a>
+					<a class="btn btn-success" href="Login/login_reg">Login/Register</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 	<div class="container jumbo-container">
 		<div class="jumbotron row  main-jumbo">
 			<h1>JAMM || <small>Rock Your Tastebuds</small></h1>
@@ -120,9 +143,9 @@
 				</div>
 			</form>
 			<br><br>
-			<div class="row">
+			<!-- <div class="row">
 				<a href="login_reg" class="col-md-offset-5 btn btn-success">Register or Log In</a>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </div>

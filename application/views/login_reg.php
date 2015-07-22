@@ -19,9 +19,6 @@
 			padding: margin;
 		}
 
-		.navbar-brand img {
-			height: 150%;
-		}
 	</style>
 </head>
 <body>
@@ -31,7 +28,7 @@
 		<div class="container-fluid">
 	    	<div class="navbar-header">
 	      		<a class="navbar-brand" href="#">
-	        		<img alt="logo" src="assets/images/logo.png">
+	        		<img alt="logo" src="/assets/images/logo.png" style="height: 150%">
 	      		</a>
 	    	</div>
 	  	<form class="navbar-form navbar-left" role="search">

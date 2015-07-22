@@ -6,7 +6,7 @@
   	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<style type="text/css">
-	img{
+	table img{
 		display: inline-block;
 		vertical-align: top;
 		margin-right: 10px;
@@ -42,11 +42,37 @@
 	</style>
 </head>
 	<body>
+	<div class="container">
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+	    	<div class="navbar-header">
+	      		<a class="navbar-brand" href="/">
+	        		<img alt="logo" src="/assets/images/logo.png" style="height: 150%">
+	      		</a>
+	    	</div>
+	  	<form class="navbar-form navbar-left" role="search">
+			<div class="form-group">
+		    	<input type="text" class="form-control" name="city" placeholder="City">
+		  	</div>
+		  	<div class="form-group">
+		    	<input type="text" class="form-control" name="cuisine" placeholder="Cuisine">
+		  	</div>
+		  	<div class="form-group">
+		    	<input type="text" class="form-control" name="chef" placeholder="Chef Name">
+		  	</div>
+		  	<button type="submit" class="btn btn-success">Search</button>
+		</form>
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="user_profile">User Account</a></li>
+			<li><a href="chef_profile">Chef Account</a></li>
+        	<li><a href="login_reg">Login/Register</a></li>
+        </ul>
+		</div>
+	</nav>
+</div>
+
 		<div class="container">
-			<div class="page-header">
-				<img src="/assets/JAMM_Logo.png">
-    			<h3>Rock your tastebuds</h3>      
-			</div>
+			
 			<p>Your Cart:</p>
 			<table class="table table-striped">
 				<tr>
