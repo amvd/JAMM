@@ -23,7 +23,15 @@ class Users extends CI_Controller {
 		$this->load->view('user_reviews_this_week');
 	}
 
+	public function user_cart()
+	{
+		$this->load->view("cart");
+	}
 
+	public function order_form()
+	{
+		$this->load->view("order_form");
+	}
 
 
 }

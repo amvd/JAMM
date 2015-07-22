@@ -34,36 +34,34 @@
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">JAMM</a>
+                <a class="navbar-brand" href="/">
+                    <img alt="logo" src="/assets/images/logo.png" style="height: 150%">
+                </a>
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">About</a>
-                    </li>
-                    <li>
-                        <a href="#">Services</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
-                </ul>
+        <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" name="city" placeholder="City">
             </div>
-            <!-- /.navbar-collapse -->
+            <div class="form-group">
+                <input type="text" class="form-control" name="cuisine" placeholder="Cuisine">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="chef" placeholder="Chef Name">
+            </div>
+            <button type="submit" class="btn btn-success">Search</button>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="user_profile">User Account</a></li>
+            <li><a href="chef_profile">Chef Account</a></li>
+            <li><a href="login_reg">Login/Register</a></li>
+        </ul>
         </div>
-        <!-- /.container -->
     </nav>
+</div>
 
     <!-- Page Content -->
     <div class="container pagecontent">
@@ -96,7 +94,7 @@
         <!-- Related Projects Row -->
         <div class="row">
 	        <div class="col-lg-12">
-	                <h3 class="page-header"><a href="/main/chef_menu">Menu of the Week</a></h3>
+	                <h3 class="page-header"><a href="/Chefs/chef_menu">Menu of the Week</a></h3>
             </div>
 	            <div class="col-md-12">
 	                <a href="#">
@@ -110,7 +108,7 @@
         <div class="row">
 
             <div class="col-lg-12">
-                <h3 class="page-header"><a href="/main/chef_orders_this_week">Recent Customer Orders</a></h3>
+                <h3 class="page-header"><a href="/Chefs/chef_orders_this_week">Recent Customer Orders</a></h3>
             </div>
 
             <div class="col-sm-3 col-xs-6">
@@ -146,7 +144,7 @@
         <div class="row">
 
             <div class="col-lg-12">
-                <h3 class="page-header"><a href="/main/chef_reviews_this_week">Recent Customer Reviews</a></h3>
+                <h3 class="page-header"><a href="/Chefs/chef_reviews_this_week">Recent Customer Reviews</a></h3>
             </div>
 
             <div class="col-sm-3 col-xs-6">

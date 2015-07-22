@@ -9,9 +9,7 @@
 	<style type="text/css">
 		.main-jumbo {
 			background-color: rgba(245, 245, 245, 0.9);
-			
 		}
-
 		.jumbo-container {
 			margin-top: 200px;
 		}
@@ -51,7 +49,7 @@
 		}
 
 		#main { 
-		    background: url(assets/images/background.jpg) 50% 0 fixed; 
+		    background: url(assets/images/background.jpg) no-repeat center center; 
 /*		    height: auto;  */
 		    margin: 0 auto; 
 /*		    width: 100%; */
@@ -115,9 +113,9 @@
 		<div class="row">
 			<div class="col-md-4 col-md-offset-8">
 				<div class="btn-group" role="group">
-					<a class="btn btn-success" href="user_profile">User Profile</a>
-					<a class="btn btn-success" href="chef_profile">Chef Profile</a>
-					<a class="btn btn-success" href="login_reg">Login/Register</a>
+					<a class="btn btn-success" href="Users/user_profile">User Profile</a>
+					<a class="btn btn-success" href="Chefs/chef_profile">Chef Profile</a>
+					<a class="btn btn-success" href="Login/login_reg">Login/Register</a>
 				</div>
 			</div>
 		</div>
