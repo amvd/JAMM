@@ -1,3 +1,5 @@
+<?php var_dump($food_info); die(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 

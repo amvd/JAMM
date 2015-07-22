@@ -31,16 +31,16 @@ class Food extends CI_Model{
 
 	public function register_user($post) {
 		//to register user after no validation error
-		$query = "INSERT INTO users (first_name, last_name, email, password, phone, address, zip_code, created_at, updated_at)
-							VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
-		$this->db->query($query, array($post['first_name'], $post['last_name'], $post['email'], md5($post['password']), $post['phone'], $post['address'], $post['zip_code']));
+		$query = "INSERT INTO users (first_name, last_name, email, password, phone, address, city, state, zip_code, created_at, updated_at)
+							VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
+		$this->db->query($query, array($post['first_name'], $post['last_name'], $post['email'], md5($post['password']), $post['phone'], $post['address'], $post['city'], $post['state'], $post['zip_code']));
 	}//register_user
 
 	public function register_chef($post) {
 		//to register user after no validation error
-		$query = "INSERT INTO chefs (first_name, last_name, email, password, phone, address, zip_code, created_at, updated_at)
-							VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
-		$this->db->query($query, array($post['first_name'], $post['last_name'], $post['email'], md5($post['password']), $post['phone'], $post['address'], $post['zip_code']));
+		$query = "INSERT INTO chefs (first_name, last_name, email, password, phone, address, city, state, zip_code, created_at, updated_at)
+							VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
+		$this->db->query($query, array($post['first_name'], $post['last_name'], $post['email'], md5($post['password']), $post['phone'], $post['address'], $post['city'], $post['state'], $post['zip_code']));
 	}//register_chef
 
 	public function login_user($post) {
@@ -88,7 +88,7 @@ class Food extends CI_Model{
 							ON foods.chef_id = chefs.id
 							WHERE city = ?";
 		$all_foods = $this->db->query($query, array($city))->result_array();
-
+				return $all_foods;
 	} 
 
 
