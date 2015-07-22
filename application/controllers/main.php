@@ -59,6 +59,7 @@ class Main extends CI_Controller {
 	{
 		$this->load->view('chef_reviews_this_week');
 	}
+	
 }
 
 //end of main controller
