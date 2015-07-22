@@ -71,7 +71,7 @@
 		<div class="container-fluid">
 	    	<div class="navbar-header">
 	      		<a class="navbar-brand" href="#">
-	        		<img alt="logo" src="assets/images/logo.png">
+	        		<img alt="logo" src="logo.png">
 	      		</a>
 	    	</div>
 	  	<form class="navbar-form navbar-left" role="search">
@@ -84,12 +84,11 @@
 		  	<div class="form-group">
 		    	<input type="text" class="form-control" name="chef" placeholder="Chef Name">
 		  	</div>
-		  	<button type="submit" class="btn btn-success">Search</button>
+		  	<button type="submit" class="btn btn-success">Submit</button>
 		</form>
 		<ul class="nav navbar-nav navbar-right">
-			<li><a href="user_profile">User Account</a></li>
-			<li><a href="chef_profile">Chef Account</a></li>
-        	<li><a href="login_reg">Login/Register</a></li>
+        	<li><a href="login-reg.html">Login</a></li>
+        	<li><a href="login-reg.html">Register</a></li>
         </ul>
 		</div>
 	</nav>
@@ -150,7 +149,7 @@
 	<div class="row">
 		<div class="col-md-4">
 			<div class="thumbnail">
-				<img src="assets/images/sanjose.jpg" alt="San Jose">
+				<img src="sanjose.jpg" alt="San Jose">
 				<div class="caption">
 					<h3>San Jose</h3>
 					<p>San Jose is known for all the cats and dogs it cooks. Yummy cats and dogs. Yum ipsum custodes cow burgers. Yes all the cats and dogs are 100% organic. Yes. Yes.</p>
@@ -160,7 +159,7 @@
 		</div>
 		<div class="col-md-4">
 			<div class="thumbnail">
-				<img src="assets/images/losangeles.jpg" alt="Los Angeles">
+				<img src="losangeles.jpg" alt="Los Angeles">
 				<div class="caption">
 					<h3>Los Angeles</h3>
 					<p>Los Angeles cooks no human flesh. None. Human flesh is the last thing anyone in Los Angeles will serve you, ever. Unless possibly if you ask very nicely.</p>
@@ -170,7 +169,7 @@
 		</div>
 		<div class="col-md-4">
 			<div class="thumbnail">
-				<img src="assets/images/sanfrancisco.jpg" alt="San Francisco">
+				<img src="sanfrancisco.jpg" alt="San Francisco">
 				<div class="caption">
 					<h3>San Francisco</h3>
 					<p>Our chefs in San Francisco only eat Benedictine monks, so you have nothing to worry about. You're perfectly safe here, so feel free to stop by for a visit. (They know. Run.)</p>
@@ -187,7 +186,7 @@
 	<div class="row">
 		<div class="col-md-4">
 			<div class="thumbnail">
-				<img src="assets/images/japanese.jpg" alt="Japanese Cuisine">
+				<img src="japanese.jpg" alt="Japanese Cuisine">
 				<div class="caption">
 					<h3>Japanese Cuisine</h3>
 					<p>Fish have no feelings, and soon, neither will you.</p>
@@ -196,7 +195,7 @@
 		</div>
 		<div class="col-md-4">
 			<div class="thumbnail">
-				<img src="assets/images/italian.jpg" alt="Italian Cuisine">
+				<img src="italian.jpg" alt="Italian Cuisine">
 				<div class="caption">
 					<h3>Italian Cuisine</h3>
 					<p>If you marry my daughter, we will celebrate by eating this goat.</p>
@@ -206,7 +205,7 @@
 		</div>
 		<div class="col-md-4">
 			<div class="thumbnail">
-				<img src="assets/images/asian.jpg" alt="Asian Cuisine">
+				<img src="asian.jpg" alt="Asian Cuisine">
 				<div class="caption">
 					<h3>Asian Cuisine</h3>
 					<p>To respect our culture, you must eat our culture.</p>
@@ -222,7 +221,7 @@
 	<div class="row">
 		<div class="col-md-4">
 			<div class="thumbnail">
-				<img src="assets/images/carly.jpg" alt="Chef Carly">
+				<img src="carly.jpg" alt="Chef Carly">
 				<div class="caption">
 					<h3>Carly Stanberg</h3>
 					<p>"If all my strawberries aren't perfectly aligned, I will commit seppuku."</p>
@@ -232,7 +231,7 @@
 		</div>
 		<div class="col-md-4">
 			<div class="thumbnail">
-				<img src="assets/images/steven.jpg" alt="Chef Steven">
+				<img src="Steven.jpg" alt="Chef Steven">
 				<div class="caption">
 					<h3>Steven Miller</h3>
 					<p>"Eat my food or I will eat you."</p>
@@ -242,7 +241,7 @@
 		</div>
 		<div class="col-md-4">
 			<div class="thumbnail">
-				<img src="assets/images/senpai.jpg" alt="Chef Senpai">
+				<img src="senpai.jpg" alt="Chef Senpai">
 				<div class="caption">
 					<h3>Senpai San</h3>
 					<p>"If you notice my food, maybe I will notice you."</p>
