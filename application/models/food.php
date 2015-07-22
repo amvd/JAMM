@@ -11,6 +11,8 @@ class Food extends CI_Model{
 		$this->form_validation->set_rules("password", "Password", "required|min_length[8]|matches[confirm_pw]");
 		$this->form_validation->set_rules("confirm_pw", "Confirm Password", "required");
 		$this->form_validation->set_rules("phone", "Phone Number", "trim|required|is_natural|min_length[10]|max_length[12]");
+		$this->form_validation->set_rules("city", "City", "trim|required");
+		$this->form_validation->set_rules("state", "State", "required");
 		$this->form_validation->set_rules("zip_code", "Zip Code", "required|is_natural|min_length[5]|max_length[5]");
 
 
@@ -78,12 +80,16 @@ class Food extends CI_Model{
 
 
 
-///////ON USER OR CHEF PAGE////////////
+/////////// ALL FOODS PAGE //////////////////
 
-	// public function get_user_info($post) {
-	// 	//to get info to display on user page
-	// 	$query = "SELECT users.id, "
-	// }//get_user_info
+	public function get_foods_by_city($city) {
+		//get all foods from certain city / city
+		$query = "SELECT * FROM foods LEFT JOIN chefs 
+							ON foods.chef_id = chefs.id
+							WHERE city = ?";
+		$all_foods = $this->db->query($query, array($city))->result_array();
+
+	} 
 
 
 

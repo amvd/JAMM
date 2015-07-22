@@ -107,7 +107,17 @@
 						</div>
 						<div class="form-group">
 							<label for="address">Address</label>
-							<input type="text" class="form-control" id="address" placeholder="123 Delicious Ave, City, State abbrev." name="address">
+							<input type="text" class="form-control" id="address" placeholder="123 Delicious Ave" name="address">
+						</div>
+						<div class="form-group">
+							<label for="city">City</label>
+							<input type="text" class="form-control" id="city" placeholder="San Jose" name="city">
+						</div>
+						<div class="form-group">
+							<label for="state">State</label>
+							<select class="form-control" id="state" name="state">
+								<option>CA</option>
+							</select>
 						</div>
 						<div class="form-group">
 							<label for="zipCode">Zip Code</label>
