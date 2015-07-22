@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,19 +18,52 @@
 			background-color: rgba(245, 245, 245, 0.8);
 			padding: margin;
 		}
+
+		.navbar-brand img {
+			height: 150%;
+		}
 	</style>
 </head>
 <body>
+
+<div class="container">
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+	    	<div class="navbar-header">
+	      		<a class="navbar-brand" href="#">
+	        		<img alt="logo" src="assets/images/logo.png">
+	      		</a>
+	    	</div>
+	  	<form class="navbar-form navbar-left" role="search">
+			<div class="form-group">
+		    	<input type="text" class="form-control" name="city" placeholder="City">
+		  	</div>
+		  	<div class="form-group">
+		    	<input type="text" class="form-control" name="cuisine" placeholder="Cuisine">
+		  	</div>
+		  	<div class="form-group">
+		    	<input type="text" class="form-control" name="chef" placeholder="Chef Name">
+		  	</div>
+		  	<button type="submit" class="btn btn-success">Search</button>
+		</form>
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="user_profile">User Account</a></li>
+			<li><a href="chef_profile">Chef Account</a></li>
+        	<li><a href="login_reg">Login/Register</a></li>
+        </ul>
+		</div>
+	</nav>
+</div>
+
 
 <div class="login-background">
 	<div class="container">
 		<div class="jumbotron login-container">
 			<div class="row">
 				<div class="col-md-5">
-					<form>
+					<form action="/foods/login" method="post">
 						<h1>Login</h1>
-						
-
+						<p><?= $this->session->flashdata('error'); ?></p>
 						<div class="form-group">
 							<label for="inputEmail">Email</label>
 							<input type="email" class="form-control" id="inputEmail" placeholder="Email" name="email">
@@ -40,16 +74,16 @@
 						</div>
 
 						<div class="checkbox">
-							<label><input type="checkbox"> Login As Chef</label>
+							<label><input type="checkbox" name='chef'> Login As Chef</label>
 						</div>
 						<button type="submit" class="button btn-success">Login</button>
-					</form>
+					</form><!--LOGIN-->
 				</div>
 				<div class="col-md-2"></div>
 				<div class="col-md-5">
-					<form>
+					<form action="/foods/registration" method='post'>
 						<h1>Register</h1>
-						
+						<?= $this->session->flashdata('errors'); ?>
 						<div class="form-group">
 							<label for="inputFirstName">First Name</label>
 							<input type="text" class="form-control" id="inputFirstName" placeholder="First Name" name="firstname">
@@ -71,10 +105,10 @@
 							<input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" name="confirm">
 						</div>
 						<div class="checkbox">
-							<label><input type="checkbox"> Register As Chef</label>
+							<label><input type="checkbox" name='chef'> Register As Chef</label>
 						</div>
 						<button type="submit" class="button btn-success">Register</button>
-					</form>
+					</form><!--REGISTER-->
 				</div>
 
 
