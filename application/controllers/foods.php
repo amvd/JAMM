@@ -3,6 +3,7 @@
 class foods extends CI_Controller {
 	
 	public function __construct() {
+		parent::__construct();
 		$this->load->model('Food');
 	}
 
@@ -19,8 +20,11 @@ class foods extends CI_Controller {
 
 
 	public function all_food_by_city() {
-
-		
+		//filter foods by city
+		var_dump($this->input->post()); die();
+		$this->Food->get_foods_by_city($this->input->post());
 	}
 
 }//end of foods controller
+
+?>
