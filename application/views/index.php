@@ -113,9 +113,10 @@
 <!-- </section> -->
 	<div class="container">
 		<div class="row">
-			<div class="col-md-3 col-md-offset-9">
+			<div class="col-md-4 col-md-offset-8">
 				<div class="btn-group" role="group">
-					<a class="btn btn-success" href="login_reg">Profile</a>
+					<a class="btn btn-success" href="user_profile">User Profile</a>
+					<a class="btn btn-success" href="chef_profile">Chef Profile</a>
 					<a class="btn btn-success" href="login_reg">Login/Register</a>
 				</div>
 			</div>

@@ -15,50 +15,6 @@ class Main extends CI_Controller {
 
 
 
-	public function user_profile()
-	{
-		$this->load->view('user_profile');
-	}
-
-	public function user_orders_this_week()
-	{
-		$this->load->view('user_orders_this_week');
-	}
-
-	public function user_orders()
-	{
-		$this->load->view('partials/orders');
-	}
-
-	public function user_reviews_this_week()
-	{
-		$this->load->view('user_reviews_this_week');
-	}
-
-
-
-
-
-
-	public function chef_profile()
-	{
-		$this->load->view('chef_profile');
-	}
-
-	public function chef_menu()
-	{
-		$this->load->view('chef_menu');
-	}
-
-	public function chef_orders_this_week()
-	{
-		$this->load->view('chef_orders_this_week');
-	}
-
-	public function chef_reviews_this_week()
-	{
-		$this->load->view('chef_reviews_this_week');
-	}
-}
+	
 
 //end of main controller
