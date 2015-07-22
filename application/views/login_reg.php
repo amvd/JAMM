@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +25,7 @@
 	</style>
 </head>
 <body>
+
 <div class="container">
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
@@ -59,10 +61,9 @@
 		<div class="jumbotron login-container">
 			<div class="row">
 				<div class="col-md-5">
-					<form>
+					<form action="/foods/login" method="post">
 						<h1>Login</h1>
-						
-
+						<p><?= $this->session->flashdata('error'); ?></p>
 						<div class="form-group">
 							<label for="inputEmail">Email</label>
 							<input type="email" class="form-control" id="inputEmail" placeholder="Email" name="email">
@@ -73,16 +74,16 @@
 						</div>
 
 						<div class="checkbox">
-							<label><input type="checkbox"> Login As Chef</label>
+							<label><input type="checkbox" name='chef'> Login As Chef</label>
 						</div>
 						<button type="submit" class="button btn-success">Login</button>
-					</form>
+					</form><!--LOGIN-->
 				</div>
 				<div class="col-md-2"></div>
 				<div class="col-md-5">
-					<form>
+					<form action="/foods/registration" method='post'>
 						<h1>Register</h1>
-						
+						<?= $this->session->flashdata('errors'); ?>
 						<div class="form-group">
 							<label for="inputFirstName">First Name</label>
 							<input type="text" class="form-control" id="inputFirstName" placeholder="First Name" name="firstname">
@@ -104,10 +105,10 @@
 							<input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" name="confirm">
 						</div>
 						<div class="checkbox">
-							<label><input type="checkbox"> Register As Chef</label>
+							<label><input type="checkbox" name='chef'> Register As Chef</label>
 						</div>
 						<button type="submit" class="button btn-success">Register</button>
-					</form>
+					</form><!--REGISTER-->
 				</div>
 
 
