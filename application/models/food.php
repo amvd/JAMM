@@ -5,12 +5,12 @@ class Food extends CI_Model{
 	public function validate() {
 		//to validate registration
 		$this->load->library("form_validation");
-		$this->form_validation->set_rules("name", "Name", "required");
-		$this->form_validation->set_rules("username", "Username", "trim|required");
+		$this->form_validation->set_rules("first_name", "First Name", "trim|required");
+		$this->form_validation->set_rules("last_name", "Last Name", "trim|required");
 		$this->form_validation->set_rules("email", "Email", "required|valid_email|is_unique[users.email]");
 		$this->form_validation->set_rules("password", "Password", "required|min_length[8]|matches[confirm_pw]");
 		$this->form_validation->set_rules("confirm_pw", "Confirm Password", "required");
-		$this->form_validation->set_rules("phone", "Phone Number", "required|is_natural|min_length[10]|max_length[10]");
+		$this->form_validation->set_rules("phone", "Phone Number", "trim|required|is_natural|min_length[10]|max_length[12]");
 		$this->form_validation->set_rules("zip_code", "Zip Code", "required|is_natural|min_length[5]|max_length[5]");
 
 
@@ -29,16 +29,16 @@ class Food extends CI_Model{
 
 	public function register_user($post) {
 		//to register user after no validation error
-		$query = "INSERT INTO users (name, username, password, email, phone, bio, profile_pic_url, allergies, address, zip_code, created_at, updated_at)
-							VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
-		$this->db->query($query, array($post['name'], $post['username'], md5($post['password']), $post['email'], $post['phone'], $post['bio'], $post['profile_pic_url'], $post['allergies'], $post['address'], $post['zip_code']));
+		$query = "INSERT INTO users (first_name, last_name, email, password, phone, address, zip_code, created_at, updated_at)
+							VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
+		$this->db->query($query, array($post['first_name'], $post['last_name'], $post['email'], md5($post['password']), $post['phone'], $post['address'], $post['zip_code']));
 	}//register_user
 
 	public function register_chef($post) {
 		//to register user after no validation error
-		$query = "INSERT INTO chefs (chef_name, kitchen_name, email, password, phone_number, address, zip_code, bio, chef_picture_url, restaurant_picture_url, created_at, updated_at)
-							VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
-		$this->db->query($query, array($post['chef_name'], $post['kitchen_name'], $post['email'], md5($post['password']), $post['phone_number'], $post['address'], $post['zip_code'], $post['bio'], $post['chef_picture_url'], $post['restaurant_picture_url']));
+		$query = "INSERT INTO chefs (first_name, last_name, email, password, phone, address, zip_code, created_at, updated_at)
+							VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
+		$this->db->query($query, array($post['first_name'], $post['last_name'], $post['email'], md5($post['password']), $post['phone'], $post['address'], $post['zip_code']));
 	}//register_chef
 
 	public function login_user($post) {
@@ -49,6 +49,7 @@ class Food extends CI_Model{
 			if (md5($post['password']) == $user_info['password']) {
 				$this->session->set_userdata('user_type', "user");
 				$this->session->set_userdata('logged_in', true);
+				$this->session->set_userdata('user_type', "user");
 				return $user_info; //to put into session
 			}
 			else
@@ -58,12 +59,13 @@ class Food extends CI_Model{
 
 	public function login_chef($post) {
 		//first checks DB and if true, then log in
-		$query = "SELECT * FROM chef WHERE email = ?";
+		$query = "SELECT * FROM chefs WHERE email = ?";
 		$chef_info = $this->db->query($query, array($post['email']))->row_array();
 		if ($chef_info){
 			if (md5($post['password']) == $chef_info['password']){
 				$this->session->set_userdata('user_type', "chef");
 				$this->session->set_userdata('logged_in', true);
+				$this->session->set_userdata('user_type', "chef");
 				return $chef_info; //to put into session
 			}
 			else

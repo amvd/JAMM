@@ -27,7 +27,7 @@
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 	    	<div class="navbar-header">
-	      		<a class="navbar-brand" href="#">
+	      		<a class="navbar-brand" href="/">
 	        		<img alt="logo" src="/assets/images/logo.png" style="height: 150%">
 	      		</a>
 	    	</div>
@@ -44,9 +44,9 @@
 		  	<button type="submit" class="btn btn-success">Search</button>
 		</form>
 		<ul class="nav navbar-nav navbar-right">
-			<li><a href="user_profile">User Account</a></li>
-			<li><a href="chef_profile">Chef Account</a></li>
-        	<li><a href="login_reg">Login/Register</a></li>
+			<li><a href="/users/user_profile">User Account</a></li>
+			<li><a href="/chefs/chef_profile">Chef Account</a></li>
+        	<li><a href="/logins/login_page">Login/Register</a></li>
         </ul>
 		</div>
 	</nav>
@@ -58,7 +58,7 @@
 		<div class="jumbotron login-container">
 			<div class="row">
 				<div class="col-md-5">
-					<form action="/foods/login" method="post">
+					<form action="/logins/login" method="post">
 						<h1>Login</h1>
 						<p><?= $this->session->flashdata('error'); ?></p>
 						<div class="form-group">
@@ -78,16 +78,16 @@
 				</div>
 				<div class="col-md-2"></div>
 				<div class="col-md-5">
-					<form action="/foods/registration" method='post'>
+					<form action="/logins/registration" method='post'>
 						<h1>Register</h1>
 						<?= $this->session->flashdata('errors'); ?>
 						<div class="form-group">
 							<label for="inputFirstName">First Name</label>
-							<input type="text" class="form-control" id="inputFirstName" placeholder="First Name" name="firstname">
+							<input type="text" class="form-control" id="inputFirstName" placeholder="First Name" name="first_name">
 						</div>
 						<div class="form-group">
 							<label for="inputLastName">Last Name</label>
-							<input type="text" class="form-control" id="inputLastName" placeholder="Last Name" name="lastname">
+							<input type="text" class="form-control" id="inputLastName" placeholder="Last Name" name="last_name">
 						</div>
 						<div class="form-group">
 							<label for="inputEmail">Email</label>
@@ -99,7 +99,19 @@
 						</div>
 						<div class="form-group">
 							<label for="confirmPassword">Confirm Password</label>
-							<input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" name="confirm">
+							<input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" name="confirm_pw">
+						</div>
+						<div class="form-group">
+							<label for="phoneNumber">Phone Number</label>
+							<input type="text" class="form-control" id="phoneNumber" placeholder="### ### ####" name="phone">
+						</div>
+						<div class="form-group">
+							<label for="address">Address</label>
+							<input type="text" class="form-control" id="address" placeholder="123 Delicious Ave, City, State abbrev." name="address">
+						</div>
+						<div class="form-group">
+							<label for="zipCode">Zip Code</label>
+							<input type="text" class="form-control" id="zipCode" placeholder="95616" name="zip_code">
 						</div>
 						<div class="checkbox">
 							<label><input type="checkbox" name='chef'> Register As Chef</label>

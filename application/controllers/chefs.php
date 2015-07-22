@@ -1,9 +1,6 @@
 <?php
 
 class Chefs extends CI_Controller {
-	
-
-
 
 	public function chef_profile()
 	{
@@ -24,4 +21,6 @@ class Chefs extends CI_Controller {
 	{
 		$this->load->view('chef_reviews_this_week');
 	}
-}
+
+}//end of chefs controller
+

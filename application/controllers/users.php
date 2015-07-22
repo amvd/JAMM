@@ -1,9 +1,9 @@
 <?php
 
-class Users extends CI_Controller {
+class users extends CI_Controller {
 	
 
-	public function user_profile()
+	public function user_profile($user_id)
 	{
 		$this->load->view('user_profile');
 	}
@@ -34,4 +34,4 @@ class Users extends CI_Controller {
 	}
 
 
-}
+}//end of users controller

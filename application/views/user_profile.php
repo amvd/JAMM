@@ -1,3 +1,7 @@
+<?php var_dump($this->session->all_userdata()); 
+      $session_data = $this->session->all_userdata();?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Portfolio Item - Start Bootstrap Template</title>
+    <title><?= $session_data['first_name'] ?>'s Page</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <!-- Optional theme -->
@@ -48,9 +52,11 @@
             <button type="submit" class="btn btn-success">Search</button>
         </form>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="user_profile">User Account</a></li>
-            <li><a href="chef_profile">Chef Account</a></li>
-            <li><a href="login_reg">Login/Register</a></li>
+        <?php if ($this->session->userdata('user_type') == "user") { ?>
+            <li><a href="/users/user_profile/<?= $session_data['id'] ?>">User Account</a></li> <?php } 
+          else { ?>
+            <li><a href="/chefs/chef_profile/<?= $session_data['id'] ?>">Chef Account</a></li> <?php } ?>
+            <li><a href="/logins/logout">Logout</a></li> 
         </ul>
         </div>
     </nav>
@@ -62,7 +68,7 @@
         <!-- Portfolio Item Heading -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Mike Lim
+                <h1 class="page-header"><?= $session_data['first_name'] . " " . $session_data['last_name'] ?>
                     <small></small>
                 </h1>
             </div>
@@ -77,7 +83,7 @@
             </div>
 
             <div class="col-md-9">
-                <h3>User Bio</h3>
+                <h3>About <?= $session_data['first_name'] ?></h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
             </div>
 

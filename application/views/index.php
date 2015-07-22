@@ -113,9 +113,17 @@
 		<div class="row">
 			<div class="col-md-4 col-md-offset-8">
 				<div class="btn-group" role="group">
-					<a class="btn btn-success" href="Users/user_profile">User Profile</a>
-					<a class="btn btn-success" href="Chefs/chef_profile">Chef Profile</a>
-					<a class="btn btn-success" href="Login/login_reg">Login/Register</a>
+
+        <?php if ($this->session->userdata('user_type') == "user") { ?>
+					<a class="btn btn-success" href="/users/user_profile/<?= $this->session->userdata('id') ?>">User Profile</a> <?php } 
+          if ($this->session->userdata('user_type') == "chef") { ?>
+					<a class="btn btn-success" href="/chefs/chef_profile/<?= $this->session->userdata('id') ?>">Chef Profile</a> <?php } ?>
+<!-- 					<a class="btn btn-success" href="Users/user_profile">User Profile</a>
+					<a class="btn btn-success" href="Chefs/chef_profile">Chef Profile</a> -->
+				<?php if ($this->session->userdata('id')) { ?>
+					<a class="btn btn-success" href="/logins/logout">Logout</a> <?php }
+					else { ?>
+					<a class="btn btn-success" href="logins/login_page">Login/Register</a> <?php } ?>
 				</div>
 			</div>
 		</div>
@@ -182,7 +190,7 @@
 				<div class="caption">
 					<h3>San Jose</h3>
 					<p>San Jose is known for all the cats and dogs it cooks. Yummy cats and dogs. Yum ipsum custodes cow burgers. Yes all the cats and dogs are 100% organic. Yes. Yes.</p>
-					<p><a href="#" class="btn btn-success">Check out San Jose</a></p>
+					<p><a href="/foods/all_food/" class="btn btn-success">Check out San Jose</a></p>
 				</div>
 			</div>
 		</div>

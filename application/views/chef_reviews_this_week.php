@@ -58,9 +58,9 @@
             <button type="submit" class="btn btn-success">Search</button>
         </form>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="user_profile">User Account</a></li>
-            <li><a href="chef_profile">Chef Account</a></li>
-            <li><a href="login_reg">Login/Register</a></li>
+            <li><a href="/users/user_profile/<?= $this->session->userdata('id') ?>">User Account</a></li>
+            <li><a href="/chefs/chef_profile/<?= $this->session->userdata('id') ?>">Chef Account</a></li>
+            <li><a href="/logins/login_reg">Login/Register</a></li>
         </ul>
         </div>
     </nav>
