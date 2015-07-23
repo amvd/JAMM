@@ -102,8 +102,8 @@
 
 		<div class="container">
 		<form class="form-horizontal" role="form" action="" method="POST">	
-			<h2>Customer Information</h2>
-			<!-- <form class="form-horizontal" role="form"> -->
+			<!-- <h2>Customer Information</h2>
+			<form class="form-horizontal" role="form">
 			    <div class="form-group">
 			      <label class="control-label col-sm-2" for="first_name">First Name:</label>
 			      <div class="col-sm-4">
@@ -140,19 +140,19 @@
 			        <input type="text" class="form-control" id="zip" placeholder="Enter ZIP... ">
 			      </div>
 			    </div>
-			    <!-- <div class="form-group">
+			    <div class="form-group">
 			      <label class="control-label col-sm-2" for="email">Email:</label>
 			      <div class="col-sm-4">
 			        <input type="email" class="form-control" id="email" placeholder="Enter email... ">
 			      </div>
-			    </div> -->
+			    </div>
 			    <div class="form-group">
 			      <label class="control-label col-sm-2" for="phone">Phone:</label>
 			      <div class="col-sm-4">
 			        <input type="text" class="form-control" id="phone" placeholder="Enter phone... ">
 			      </div>
 			    </div>
-			    <!-- <div class="form-group">
+			    <div class="form-group">
 			      <label class="control-label col-sm-2" for="cc">Credit Card Number:</label>
 			      <div class="col-sm-2">
 			        <input type="text" class="form-control" id="cc" placeholder="Enter Credit Card number ">
@@ -165,7 +165,7 @@
 			      </div>
 			    	</div> -->
 			    <div class="form-group">        
-			      <div class="col-sm-offset-2 col-sm-10">
+			      <div class="col-sm-offset-10 col-md-2">
 			        <script
 					    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 					    data-key="pk_test_C7bnGIMkm2l6UWsGWYFXxng5"
