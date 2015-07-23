@@ -111,20 +111,25 @@
 <!-- </section> -->
 	<div class="container">
 		<div class="row">
-			<div class="col-md-4 col-md-offset-8">
+			<div class="navbar-right">
 				<div class="btn-group" role="group">
 
-        <?php if ($this->session->userdata('user_type') == "user") { ?>
-					<a class="btn btn-success" href="/users/user_profile/<?= $this->session->userdata('id') ?>">User Profile</a> <?php } 
-          if ($this->session->userdata('user_type') == "chef") { ?>
-					<a class="btn btn-success" href="/chefs/chef_profile/<?= $this->session->userdata('id') ?>">Chef Profile</a> <?php } ?>
-<!-- 					<a class="btn btn-success" href="Users/user_profile">User Profile</a>
-					<a class="btn btn-success" href="Chefs/chef_profile">Chef Profile</a> -->
-				<?php if ($this->session->userdata('id')) { ?>
-					<a class="btn btn-success" href="/logins/logout">Logout</a> <?php }
-					else { ?>
-					<a class="btn btn-success" href="logins/login_page">Login/Register</a> <?php } ?>
-				</div>
+<?php
+                if ($this->session->userdata('user_type') == "user") { ?>
+                    <a href="/users/user_profile/<?= $session_data['id'] ?>">User Account</a>
+                    <a href="/logins/logout">Logout</a>
+<?php           } 
+                  elseif ($this->session->userdata('user_type') == "chef") { ?>
+                    <a href="/chefs/chef_profile/<?= $session_data['id'] ?>">Chef Account</a>
+                    <a href="/logins/logout">Logout</a>
+<?php           
+                } else {
+?>
+                    <a class="btn btn-success" href="/logins/login_page">Login/Register</a>
+<?php
+                }
+?>
+                </div>
 			</div>
 		</div>
 	</div>
@@ -133,18 +138,18 @@
 		<div class="jumbotron row  main-jumbo">
 			<h1>JAMM || <small>Rock Your Tastebuds</small></h1>
 			<br><br>
-			<form class="mainform form-inline">
+			<form method="post" action="" class="mainform form-inline">
 				<div class="form-group">
 					<h3>Search By:</h3>
 				</div>
 				<div class="form-group">
-					<input type="text" class="form-control input-lg" placeholder="City" aria-describedby="basic-addon1" name="city">
+					<input type="text" class="form-control input-lg" placeholder="City (required)" aria-describedby="basic-addon1" name="city">
 				</div>
 				<div class="form-group">
 					<input type="text" class="form-control input-lg" placeholder="Cuisine" aria-describedby="basic-addon2" name="cuisine">
 				</div>
 				<div class="form-group">
-					<input type="text" class="form-control input-lg" placeholder="Chef Name" aria-describedby="basic-addon3" name="chef">
+					<input type="text" class="form-control input-lg" placeholder="Food Name" aria-describedby="basic-addon3" name="food">
 				</div>
 				<div class="form-group">
 					<button type="submit" value="Search" class="btn btn-success">Submit</button>

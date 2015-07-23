@@ -27,36 +27,46 @@
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
+<div class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">jamm</a>
+                <a class="navbar-brand" href="/">
+                    <img alt="logo" src="/assets/images/logo.png" style="height: 150%">
+                </a>
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">About</a>
-                    </li>
-                    <li>
-                        <a href="#">Services</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
+        <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" name="city" placeholder="City">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="cuisine" placeholder="Cuisine">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="chef" placeholder="Chef Name">
+            </div>
+            <button type="submit" class="btn btn-success">Search</button>
+        </form>
+                <ul class="nav navbar-nav navbar-right">
+<?php
+                if ($this->session->userdata('user_type') == "user") { ?>
+                    <li><a href="/users/user_profile/<?= $session_data['id'] ?>">User Account</a></li>
+                    <li><a href="/logins/logout">Logout</a></li>
+<?php           } 
+                  elseif ($this->session->userdata('user_type') == "chef") { ?>
+                    <li><a href="/chefs/chef_profile/<?= $session_data['id'] ?>">Chef Account</a></li> 
+                    <li><a href="/logins/logout">Logout</a></li> 
+<?php           
+                } else {
+?>
+                    <li><a href="/logins/login_page">Login/Register</a></li>
+<?php
+                }
+?>
                 </ul>
-            </div>
-            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container -->
     </nav>
+</div>
 
     <!-- Page Content -->
     <div class="container">
