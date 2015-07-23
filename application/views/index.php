@@ -70,6 +70,9 @@
 		    /*color: #fff;*/
 		}
 
+/*		.city-btn a {
+			margin: auto;
+		}*/
 	</style>
 </head>
 <body>
@@ -116,12 +119,12 @@
 
 <?php
                 if ($this->session->userdata('user_type') == "user") { ?>
-                    <a href="/users/user_profile/<?= $session_data['id'] ?>">User Account</a>
-                    <a href="/logins/logout">Logout</a>
+                    <a class="btn btn-success" href="/users/user_profile/<?= $session_data['id'] ?>">User Account</a>
+                    <a class="btn btn-success" href="/logins/logout">Logout</a>
 <?php           } 
                   elseif ($this->session->userdata('user_type') == "chef") { ?>
-                    <a href="/chefs/chef_profile/<?= $session_data['id'] ?>">Chef Account</a>
-                    <a href="/logins/logout">Logout</a>
+                    <a class="btn btn-success" href="/chefs/chef_profile/<?= $session_data['id'] ?>">Chef Account</a>
+                    <a class="btn btn-success" href="/logins/logout">Logout</a>
 <?php           
                 } else {
 ?>
@@ -180,7 +183,7 @@
 			<h2>Know any good chefs?</h2>
 			<p>Give them a chance to share their talents with the world! Take them to our website.</p>
 		</div>
-		<div class="clearfix"></div>
+		
 	</div>
 	<hr class="section-heading-spacer">
 </div>
@@ -196,11 +199,12 @@
 				<div class="caption">
 					<h3>San Jose</h3>
 					<p>San Jose is known for all the cats and dogs it cooks. Yummy cats and dogs. Yum ipsum custodes cow burgers. Yes all the cats and dogs are 100% organic. Yes. Yes.</p>
-						<form action="/foods/all_food_by_city" method='post'>
-						 	<input type='hidden' name='city' value="San Jose">
-							<p><input type='submit' class="btn btn-success" value="Check out San Jose"></p>
-						</form>
-		</div>
+						<div class="city-btn">
+							<a href="/foods/all_food_by_city/San%20Jose" class="btn btn-success col-md-3 col-md-offset-2">Food</a>
+							<a href="#" class="btn btn-success col-md-3 col-md-offset-2">Chefs</a>
+						</div>
+						<div class="clearfix"></div>
+				</div>
 			</div>
 		</div>
 
@@ -210,10 +214,11 @@
 				<div class="caption">
 					<h3>Los Angeles</h3>
 					<p>Los Angeles cooks no human flesh. None. Human flesh is the last thing anyone in Los Angeles will serve you, ever. Unless possibly if you ask very nicely.</p>
-						<form action="/foods/all_food_by_city" method='post'>
-						  <input type='hidden' name='city' value="Los Angeles">
-							<p><input type='submit' class="btn btn-success" value="Check out Los Angeles"></p>
-						</form>
+						<div class="city-btn">
+							<a href="/foods/all_food_by_city/Los%20Angeles" class="btn btn-success col-md-3 col-md-offset-2">Food</a>
+							<a href="/foods/all_food_by_city/Los%20Angeles" class="btn btn-success col-md-3 col-md-offset-2">Chefs</a>
+						</div>
+						<div class="clearfix"></div>
 				</div>
 			</div>
 		</div>
@@ -224,10 +229,11 @@
 				<div class="caption">
 					<h3>San Francisco</h3>
 					<p>Our chefs in San Francisco only eat Benedictine monks, so you have nothing to worry about. You're perfectly safe here, so feel free to stop by for a visit. (They know. Run.)</p>
-						<form action="/foods/all_food_by_city" method='post'>
-					 	  <input type='hidden' name='city' value="San Francisco">
-					    <p><input type='submit' class="btn btn-success" value="Check out San Francisco"></p>				
-						</form>
+						<div class="city-btn">
+							<a href="/foods/all_food_by_city/San%20Francisco" class="btn btn-success col-md-3 col-md-offset-2">Food</a>
+							<a href="/foods/all_food_by_city/San%20Francisco" class="btn btn-success col-md-3 col-md-offset-2">Chefs</a>
+						</div>
+						<div class="clearfix"></div>
 				</div>
 			</div>
 		</div>
@@ -236,77 +242,7 @@
 	</div>
 </div>
 
-<div class="container">
-	<hr class="section-heading-spacer">
-	<h1>Find Your Favorite Cuisine</h1>
-	<div class="row">
-		<div class="col-md-4">
-			<div class="thumbnail">
-				<img src="assets/images/japanese.jpg" alt="Japanese Cuisine">
-				<div class="caption">
-					<h3>Japanese Cuisine</h3>
-					<p>Fish have no feelings, and soon, neither will you.</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="thumbnail">
-				<img src="assets/images/italian.jpg" alt="Italian Cuisine">
-				<div class="caption">
-					<h3>Italian Cuisine</h3>
-					<p>If you marry my daughter, we will celebrate by eating this goat.</p>
-					<p>If you marry my goat, we will celebrate by eating my daughter.</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="thumbnail">
-				<img src="assets/images/asian.jpg" alt="Asian Cuisine">
-				<div class="caption">
-					<h3>Asian Cuisine</h3>
-					<p>To respect our culture, you must eat our culture.</p>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
 
-<div class="container">
-	<hr class="section-heading-spacer">
-	<h1>Find the Best Chefs Near You</h1>
-	<div class="row">
-		<div class="col-md-4">
-			<div class="thumbnail">
-				<img src="assets/images/carly.jpg" alt="Chef Carly">
-				<div class="caption">
-					<h3>Carly Stanberg</h3>
-					<p>"If all my strawberries aren't perfectly aligned, I will commit seppuku."</p>
-					<p><a href="#" class="btn btn-success">See If Carly's Bluffing!</a></p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="thumbnail">
-				<img src="assets/images/steven.jpg" alt="Chef Steven">
-				<div class="caption">
-					<h3>Steven Miller</h3>
-					<p>"Eat my food or I will eat you."</p>
-					<p><a href="#" class="btn btn-success">Try to Eat Steven First!</a></p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="thumbnail">
-				<img src="assets/images/senpai.jpg" alt="Chef Senpai">
-				<div class="caption">
-					<h3>Senpai San</h3>
-					<p>"If you notice my food, maybe I will notice you."</p>
-					<p><a href="#" class="btn btn-success">Prove Your Worth to Senpai!</a></p>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
 <br>
 <p class="text-center">&copy; JAMM, Inc.</p>
 </section>
