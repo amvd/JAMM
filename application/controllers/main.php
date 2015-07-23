@@ -11,7 +11,7 @@ class Main extends CI_Controller {
 	public function index()
 	{
 		// $this->session->sess_destroy(); die();
-		$this->load->view("index");
+		$this->load->view("test");
 	}
 
 
