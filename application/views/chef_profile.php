@@ -1,4 +1,7 @@
-<?php var_dump($this->session->all_userdata()); $session_data = $this->session->all_userdata();?>
+<?php var_dump($this->session->all_userdata()); $session_data = $this->session->all_userdata();
+
+    // var_dump($this->session->userdata('bio'));
+?>
 
 
 <!DOCTYPE html>
@@ -12,7 +15,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Chef's Profile</title>
+    <title><?= $this->session->userdata('first_name')?>'s Profile</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -22,6 +25,11 @@
     <style type="text/css">
         .pagecontent {
             margin-top: 50px;
+        }
+
+        #edit_button
+        {
+            color: white;
         }
     </style>
 
@@ -84,7 +92,10 @@
         <!-- Portfolio Item Heading -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Jennifer's Kitchen
+                <h1 class="page-header"><?= $this->session->userdata('first_name')?>'s Kitchen
+                <form action="/">
+                    <!-- <input type="button"> -->
+                </form>
                     <small></small>
                 </h1>
             </div>
@@ -100,7 +111,8 @@
 
             <div class="col-md-9">
                 <h3>Chef's Bio</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
+                <p><button type="submit" class="btn-xs btn-primary "><a href="/chefs/chef_edit_profile" id="edit_button">Edit Profile</a> </button></p>
+                <p><?= $session_data['bio'] ?></p>
             </div>
 
         </div>
@@ -109,7 +121,9 @@
         <!-- Related Projects Row -->
         <div class="row">
 	        <div class="col-lg-12">
-	                <h3 class="page-header"><a href="/Chefs/chef_menu">Menu of the Week</a></h3>
+	                <h3 class="page-header">
+                        <a href="/chefs/chef_grab_menu">Menu of the Week </a>
+                    </h3>
             </div>
 	            <div class="col-md-12">
 	                <a href="#">
@@ -123,7 +137,7 @@
         <div class="row">
 
             <div class="col-lg-12">
-                <h3 class="page-header"><a href="/Chefs/chef_orders_this_week">Recent Customer Orders</a></h3>
+                <h3 class="page-header"><a href="/Chefs/get_chef_orders_this_week">Recent Customer Orders</a></h3>
             </div>
 
             <div class="col-sm-3 col-xs-6">
