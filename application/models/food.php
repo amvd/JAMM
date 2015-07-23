@@ -133,15 +133,42 @@ class Food extends CI_Model{
 /////////////// ALL CHEFS PAGE //////////////////
 
 
-	public function get_chefs_by_city($city) {
-		$query = "SELECT * FROM chefs WHERE city = ?";
-
-		$all_chefs = $this->db->query($query, [urldecode($city)]);
+	public function get_all_chefs_with_ratings($city) {
+		$query = "SELECT chefs.id as chef_id,chefs.first_name,chefs.first_name, kitchen_name,email,password,phone,address,city,state,zip_code,bio,chef_picture_url,restaurant_picture_url, AVG(rating) as avg_rating
+			from chefs
+			LEFT JOIN reviews on chefs.id=reviews.chef_id
+			WHERE city = ?
+			GROUP BY chefs.id";
+		$all_chefs = $this->db->query($query, array(urldecode($city)))->result_array();
+		return $all_chefs;		
 	}
 
 
 
 /////////////// END ALL CHEFS PAGE //////////////
+
+/////////////// CART PAGE //////////////////	
+	public function get_cart($user_id){
+		$query = "SELECT * FROM carts
+				  JOIN foods on carts.food_id =	foods.id
+				  JOIN chefs on foods.chef_id = chefs.id
+					WHERE user_id = $user_id ";
+		$user_cart = $this->db->query($query)->result_array();
+		return $user_cart;
+	}
+
+	public function delete_from_cart($id){
+		$this->db->delete('carts', array('id' =>$id));
+	}
+
+	public function update($id,$data){
+		$this->db->where('id', $id);
+		$this->db->update('cart_item',$data);
+	}
+
+/////////////// END CART PAGE //////////////
+
+
 
 }//end of model
 
