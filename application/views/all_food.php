@@ -1,4 +1,4 @@
-<?php var_dump($food_info); 
+<?php //var_dump($food_info); 
         //if ($all_foods_info) {var_dump($all_foods_info);}; 
 //foreach ($food_info as $cuisine) { var_dump($cuisine['type']);} die();?>
 

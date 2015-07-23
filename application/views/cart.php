@@ -87,33 +87,34 @@
 			
 			<p>Your Cart:</p>
 			<table class="table table-striped">
-				<tr>
-					<td> </td>
-					<td>Food Item</td>
-					<td>Chef</td>
-					<td>Size</td>
-					<td>Quantity</td>
-					<td>Pickup Date</td>
-					<td>Price</td>
-				</tr>
-				<tr>
-					<td><img src="http://goodtoknow.media.ipcdigital.co.uk/111/00000cb9d/9159/Red-Thai-chicken-bean-and-bamboo-curry.jpg" alt="FoodLogo"> </td>
-					<td>Fried rice</td>
-					<td>Jennifer</td>
-					<td>M</td>
-					<td>1</td>
-					<td>07/22/2015</td>
-					<td>$7.99</td>
-				</tr>
-				<tr>
-					<td><img src="http://guiltykitchen.com/images/Red%20Thai%20Curry%207.jpg" alt="FoodLogo"> </td>
-					<td>Fried plantain</td>
-					<td>Jennifer</td>
-					<td>M</td>
-					<td>1</td>
-					<td>07/22/2015</td>
-					<td>$7.99</td>
-				</tr>
+
+				
+<?php 				foreach ($user_cart as  $value) {
+?>					<form method="post" action="/food/delete">
+					<tr>
+						<input type="hidden" name="cart_item" value="<?= $value['cart.id']; ?>">
+						<td><img src="http://goodtoknow.media.ipcdigital.co.uk/111/00000cb9d/9159/Red-Thai-chicken-bean-and-bamboo-curry.jpg" alt="FoodLogo"> </td>
+						<td><?= $value['foods.name']; ?> Fried rice</td>
+						<td><?= $value['chefs.name']; ?>Jennifer</td>
+						<td> 
+							<select>	
+									<option value="small">Small</option>
+	  								<option value="medium">Medium</option>
+	  								<option value="medium">Large</option>
+							</select> 
+						</td>
+						<td><input type="number" id = "quantity_spinner" value = "1" name="quantity" min="1"></td>
+						<td></td>
+						<td>$7.99
+						<button class="btn btn-primary">
+						<a href="/main/show_product/<?= $value['cart.id']; ?>" name="show_link" value="<?= $value['cart.id']; ?>">Update</a>
+						</button>
+						<button type="submit" class="btn btn-danger">	<span class="glyphicon glyphicon-trash">	</span></button>
+						</td>
+					</tr>
+					</form>	
+<?php 				}
+?>								
 			</table>
 			<div>
 			<form role = "form">

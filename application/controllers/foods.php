@@ -14,8 +14,9 @@ class foods extends CI_Controller {
 		$this->load->view('all_food', array('food_info' => $all_foods_info));
 	}
 
-	public function all_chefs() {
-		$this->load->view('all_chef');
+	public function all_chefs_by_city($city) {	
+		$all_chefs=$this->Food->get_all_chefs_with_ratings($city);	
+		$this->load->view('all_chef',array('all_chefs' => $all_chefs));
 	}// all chefs
 
 
@@ -35,6 +36,22 @@ class foods extends CI_Controller {
 		$this->load->view('all_food', array('food_info' => $food_by_cuisine,
 																				'all_food' => $all_food));
 	}
+
+	public function display_cart(){
+		$user_id = $this->session->userdata('id');
+		$user_cart = $this->Food->get_cart($user_id);
+		$this->load->view('cart',array('user_cart' => $user_cart));
+	}
+
+	public function delete_from_cart(){
+		$id=$this->input->post('cart_item');
+		$this->food->remove($id);
+	}
+
+	public function update_cart(){
+
+	}
+
 
 }//end of foods controller
 
