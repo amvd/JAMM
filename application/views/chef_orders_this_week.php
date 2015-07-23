@@ -1,3 +1,8 @@
+<?php var_dump($this->session->all_userdata()); $session_data = $this->session->all_userdata();
+
+    // var_dump($this->session->userdata('bio'));
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

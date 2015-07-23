@@ -66,10 +66,15 @@ class chef extends CI_Model
 		LEFT JOIN cuisines on cuisines.id = foods.cuisine_id
 		LEFT JOIN prices on foods.id = prices.food_id
 		LEFT JOIN sizes on sizes.id = prices.size_id
-		WHERE chefs.id = ?";
+		WHERE chefs.id = ? AND orders.fulfilled = 0";
 
-		$value = array($post['id']);
-		return $this->db->query($query, $value)->result_array();
+		 // echo "in model"; var_dump($this->session->all_userdata()); die();
+		$value = array($this->session->userdata('id'))[0];
+		 // echo "in model"; var_dump($value); die();
+
+		$chef_orders = $this->db->query($query, $value)->result_array();
+		 echo "in model chef_orders"; var_dump($chef_orders); die();
+		return $chef_orders;
 
 	}
 

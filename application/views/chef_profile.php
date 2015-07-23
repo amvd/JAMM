@@ -137,7 +137,7 @@
         <div class="row">
 
             <div class="col-lg-12">
-                <h3 class="page-header"><a href="/Chefs/get_chef_orders_this_week">Recent Customer Orders</a></h3>
+                <h3 class="page-header"><a href="/chefs/get_chef_orders_this_week">Recent Customer Orders</a></h3>
             </div>
 
             <div class="col-sm-3 col-xs-6">
