@@ -26,7 +26,8 @@ class Chefs extends CI_Controller {
 
 	public function get_chef_orders_this_week()
 	{
-		$orders = $this->user->get_chef_orders_this_week($this->input->post());
+		$orders = $this->chef->get_chef_orders_this_week($this->input->post());
+		 // echo "in controller"; var_dump($orders); die();
 		$this->chef_orders_this_week($orders);
 		
 	}
