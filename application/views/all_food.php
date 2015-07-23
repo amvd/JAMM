@@ -1,6 +1,4 @@
-
 <?php // var_dump($food_info); 
-
         //if ($all_foods_info) {var_dump($all_foods_info);}; 
 //foreach ($food_info as $cuisine) { var_dump($cuisine['type']);} die();?>
 
@@ -25,7 +23,7 @@
     <!-- <script src="js/bootstrap.min.js"></script> -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <script>
     $(document).ready(function(){
@@ -33,10 +31,11 @@
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
+
         $('.img-responsive').on('shown.bs.modal', function () {
             $('.modal-responsive', this).focus()
          });
-    });
+        });
     </script>
 
     <style>
@@ -78,19 +77,16 @@
                 <ul class="nav navbar-nav navbar-right">
 <?php
                 if ($this->session->userdata('user_type') == "user") { ?>
-                    <li><a href="/users/user_profile/<?= $this->session->userdata['id'] ?>">User Account</a></li>
+                    <li><a href="/users/user_profile/<?= $this->session->userdata('id') ?>">User Account</a></li>
                     <li><a href="/logins/logout">Logout</a></li>
 <?php           } 
-                  elseif ($this->session->userdata('user_type') == "chef") { ?>
-                    <li><a href="/chefs/chef_profile/<?= $this->session->userdata['id'] ?>">Chef Account</a></li> 
+                elseif ($this->session->userdata('user_type') == "chef") { ?>
+                    <li><a href="/chefs/chef_profile/<?= $this->session->userdata('id') ?>">Chef Account</a></li> 
                     <li><a href="/logins/logout">Logout</a></li> 
-<?php           
-                } else {
-?>
+<?php           } 
+                else { ?>
                     <li><a href="/logins/login_page">Login/Register</a></li>
-<?php
-                }
-?>
+<?php           } ?>
                 </ul>
         </div>
     </nav>
@@ -168,10 +164,10 @@
                             <form action="" method="post">
                                 Qty:<input type='text' size='1' name='quantity'>
                                 <select>
-                                    <option>Size</option>
-                                    <option>Small</option>
-                                    <option>Medium</option>
-                                    <option>Large</option>
+                                  <option>Size</option>
+                                  <option>Small</option>
+                                  <option>Medium</option>
+                                  <option>Large</option>
                                 </select>
                                 $8.99
                             </form>            
@@ -185,8 +181,6 @@
                   </div>
                 </div>
                 <!--END MODAL-->
-
-
 
             </div>
             <?php }//foreach ?>
