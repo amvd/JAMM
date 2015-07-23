@@ -49,7 +49,7 @@
 		}
 
 		#main { 
-		    background: url(assets/images/background.jpg) no-repeat center center; 
+		    background: url(assets/images/background.jpg) 50% 0 fixed; 
 /*		    height: auto;  */
 		    margin: 0 auto; 
 /*		    width: 100%; */
