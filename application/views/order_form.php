@@ -99,8 +99,11 @@
 					<td>07/22/2015</td>
 					<td>$7.99</td>
 			</table>
+
+		<div class="container">
+		<form class="form-horizontal" role="form" action="" method="POST">	
 			<h2>Customer Information</h2>
-			<form class="form-horizontal" role="form">
+			<!-- <form class="form-horizontal" role="form"> -->
 			    <div class="form-group">
 			      <label class="control-label col-sm-2" for="first_name">First Name:</label>
 			      <div class="col-sm-4">
@@ -137,19 +140,19 @@
 			        <input type="text" class="form-control" id="zip" placeholder="Enter ZIP... ">
 			      </div>
 			    </div>
-			    <div class="form-group">
+			    <!-- <div class="form-group">
 			      <label class="control-label col-sm-2" for="email">Email:</label>
 			      <div class="col-sm-4">
 			        <input type="email" class="form-control" id="email" placeholder="Enter email... ">
 			      </div>
-			    </div>
+			    </div> -->
 			    <div class="form-group">
 			      <label class="control-label col-sm-2" for="phone">Phone:</label>
 			      <div class="col-sm-4">
 			        <input type="text" class="form-control" id="phone" placeholder="Enter phone... ">
 			      </div>
 			    </div>
-			    <div class="form-group">
+			    <!-- <div class="form-group">
 			      <label class="control-label col-sm-2" for="cc">Credit Card Number:</label>
 			      <div class="col-sm-2">
 			        <input type="text" class="form-control" id="cc" placeholder="Enter Credit Card number ">
@@ -160,13 +163,23 @@
 			      <div class="col-sm-1">
 			        <input type="text" class="form-control" id="security_code" placeholder="CVV no">
 			      </div>
-			    </div>
+			    	</div> -->
 			    <div class="form-group">        
 			      <div class="col-sm-offset-2 col-sm-10">
-			        <button type="submit" class="btn btn-primary">Place my order</button>
+			        <script
+					    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+					    data-key="pk_test_C7bnGIMkm2l6UWsGWYFXxng5"
+					    data-amount="4000"
+					    data-name="Demo Site"
+					    data-description="2 cakes ($20.00)"
+					    data-image="/assets/images/logo.png">
+					  </script>
 			      </div>
 			    </div>
-		    </form>
+	
+			</form>
+		</div>
+
 		</div>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 		<!-- Latest compiled and minified JavaScript -->
