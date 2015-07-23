@@ -42,7 +42,7 @@
 	</style>
 </head>
 	<body>
-	<div class="container">
+<div class="container">
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 	    	<div class="navbar-header">
@@ -62,11 +62,23 @@
 		  	</div>
 		  	<button type="submit" class="btn btn-success">Search</button>
 		</form>
-		<ul class="nav navbar-nav navbar-right">
-			<li><a href="user_profile">User Account</a></li>
-			<li><a href="chef_profile">Chef Account</a></li>
-        	<li><a href="login_reg">Login/Register</a></li>
-        </ul>
+                <ul class="nav navbar-nav navbar-right">
+<?php
+                if ($this->session->userdata('user_type') == "user") { ?>
+                    <li><a href="/users/user_profile/<?= $session_data['id'] ?>">User Account</a></li>
+                    <li><a href="/logins/logout">Logout</a></li>
+<?php           } 
+                  elseif ($this->session->userdata('user_type') == "chef") { ?>
+                    <li><a href="/chefs/chef_profile/<?= $session_data['id'] ?>">Chef Account</a></li> 
+                    <li><a href="/logins/logout">Logout</a></li> 
+<?php           
+                } else {
+?>
+                    <li><a href="/logins/login_page">Login/Register</a></li>
+<?php
+                }
+?>
+                </ul>
 		</div>
 	</nav>
 </div>

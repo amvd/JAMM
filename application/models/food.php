@@ -91,9 +91,20 @@ class Food extends CI_Model{
 				return $all_foods;
 	} 
 
+//////////// END ALL FOODS PAGE /////////////
+
+
+/////////////// ALL CHEFS PAGE //////////////////
+
+	public function get_chefs_by_city($city) {
+		$query = "SELECT * FROM chefs WHERE city = ?";
+
+		$all_chefs = $this->db->query($query, [urldecode($city)]);
+	}
 
 
 
+/////////////// END ALL CHEFS PAGE //////////////
 
 }//end of model
 

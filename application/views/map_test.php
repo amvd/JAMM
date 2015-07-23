@@ -1,32 +1,17 @@
-
+<!DOCTYPE html>
 <html>
 <head>
-	<title>Review</title>
-	<meta charset="utf-8">
-  	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Map Test</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 	<style type="text/css">
-	img{
-		display: inline-block;
-		vertical-align: top;
-		width: 50px;
-		height: 50px;
-	}
-	h3{
-		display: inline-block;
-		vertical-align: top;
-		/*font-style: italic;*/
-	}
-	.page-header{
-		background-color: #FFFFCC;
-	}
-	p{
-		font-weight: bold;
-		font-style: italic;
+	#map1 {
+		width: 400px;
+		height: 400px;
 	}
 	</style>
 </head>
-	<body>
+<body>
 <div class="container">
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
@@ -68,32 +53,51 @@
 	</nav>
 </div>
 
-		<div class="container">
-			
-			
-			<h2>Welcome, Mike!</h2>
-			<h3>We're glad you decided to leave a review for your favorite chef. Your fellow JAMMers will thank you!</h3>
-			<form class="form-horizontal" role="form">
-			    <div class="form-group">
-			      <label class="control-label col-sm-2" for="rating">Your Rating:</label>
-			      <div class="col-sm-4">
-			        <input type="text" class="form-control" id="rating" placeholder="Rating... ">
-			      </div>
-			    </div>
-			    <div class="form-group">
-			      <label class="control-label col-sm-2" for="review_text">Your Review:</label>
-			      <div class="col-sm-4">
-			      <textarea class="form-control" rows = "5" id="review_text" placeholder="Enter review text... ">
-			      </textarea>
-			      </div>
-			    </div>
-			   
-			    <div class="form-group">        
-			      <div class="col-sm-offset-2 col-sm-10">
-			        <button type="submit" class="btn btn-primary">Submit Review</button>
-			      </div>
-			    </div>
-		    </form>
-		</div>
-	</body>
+<div id="map1"></div>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<!-- <script src="http://maps.googleapis.com/maps/api/js?sensor=true"></script> -->
+
+<script type="text/javascript">
+
+function initialize() {
+	var mapProp = {
+		center:new google.maps.LatLng(51.508742, -0.120850),
+		zoom: 7,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	}
+	var map = new google.maps.Map(document.getElementById("map1"), mapProp);
+};
+
+// google.maps.event.addDomListener(window, 'load', initialize);
+
+
+function loadScript() {
+  var script = document.createElement("script");
+  script.src = "http://maps.googleapis.com/maps/api/js?callback=initialize";
+  document.body.appendChild(script);
+}
+
+window.onload = loadScript;
+
+function searchLocations() {
+  var address = document.getElementById("addressInput").value;
+  var geocoder = new google.maps.Geocoder();
+  geocoder.geocode({address: address}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      searchLocationsNear(results[0].geometry.location);
+    } else {
+      alert(address + ' not found');
+    }
+  });
+}
+
+
+
+</script>
+</body>
 </html>

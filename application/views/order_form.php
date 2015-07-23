@@ -32,32 +32,44 @@
 	<body>
 
 <div class="container">
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/">
-                    <img alt="logo" src="/assets/images/logo.png" style="height: 150%">
-                </a>
-            </div>
-        <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-                <input type="text" class="form-control" name="city" placeholder="City">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="cuisine" placeholder="Cuisine">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="chef" placeholder="Chef Name">
-            </div>
-            <button type="submit" class="btn btn-success">Search</button>
-        </form>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="user_profile">User Account</a></li>
-            <li><a href="chef_profile">Chef Account</a></li>
-            <li><a href="login_reg">Login/Register</a></li>
-        </ul>
-        </div>
-    </nav>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+	    	<div class="navbar-header">
+	      		<a class="navbar-brand" href="/">
+	        		<img alt="logo" src="/assets/images/logo.png" style="height: 150%">
+	      		</a>
+	    	</div>
+	  	<form class="navbar-form navbar-left" role="search">
+			<div class="form-group">
+		    	<input type="text" class="form-control" name="city" placeholder="City">
+		  	</div>
+		  	<div class="form-group">
+		    	<input type="text" class="form-control" name="cuisine" placeholder="Cuisine">
+		  	</div>
+		  	<div class="form-group">
+		    	<input type="text" class="form-control" name="chef" placeholder="Chef Name">
+		  	</div>
+		  	<button type="submit" class="btn btn-success">Search</button>
+		</form>
+                <ul class="nav navbar-nav navbar-right">
+<?php
+                if ($this->session->userdata('user_type') == "user") { ?>
+                    <li><a href="/users/user_profile/<?= $session_data['id'] ?>">User Account</a></li>
+                    <li><a href="/logins/logout">Logout</a></li>
+<?php           } 
+                  elseif ($this->session->userdata('user_type') == "chef") { ?>
+                    <li><a href="/chefs/chef_profile/<?= $session_data['id'] ?>">Chef Account</a></li> 
+                    <li><a href="/logins/logout">Logout</a></li> 
+<?php           
+                } else {
+?>
+                    <li><a href="/logins/login_page">Login/Register</a></li>
+<?php
+                }
+?>
+                </ul>
+		</div>
+	</nav>
 </div>
 
 		<div class="container">
@@ -99,7 +111,10 @@
 					<td>07/22/2015</td>
 					<td>$7.99</td>
 			</table>
-			<h2>Customer Information</h2>
+
+		<div class="container">
+		<form class="form-horizontal" role="form" action="" method="POST">	
+			<!-- <h2>Customer Information</h2>
 			<form class="form-horizontal" role="form">
 			    <div class="form-group">
 			      <label class="control-label col-sm-2" for="first_name">First Name:</label>
@@ -160,13 +175,23 @@
 			      <div class="col-sm-1">
 			        <input type="text" class="form-control" id="security_code" placeholder="CVV no">
 			      </div>
-			    </div>
+			    	</div> -->
 			    <div class="form-group">        
-			      <div class="col-sm-offset-2 col-sm-10">
-			        <button type="submit" class="btn btn-primary">Place my order</button>
+			      <div class="col-sm-offset-10 col-md-2">
+			        <script
+					    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+					    data-key="pk_test_C7bnGIMkm2l6UWsGWYFXxng5"
+					    data-amount="4000"
+					    data-name="Demo Site"
+					    data-description="2 cakes ($20.00)"
+					    data-image="/assets/images/logo.png">
+					  </script>
 			      </div>
 			    </div>
-		    </form>
+	
+			</form>
+		</div>
+
 		</div>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 		<!-- Latest compiled and minified JavaScript -->
