@@ -1,20 +1,34 @@
+<?php //var_dump($food_info); ?>
+<?php //var_dump($this->session->all_userdata()); $session_data = $this->session->all_userdata();?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <title>All Chefs</title>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>All Foods!</title>
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link href="/assets/css/3-col-portfolio.css" rel="stylesheet">
+    <link href="/assets/css/simple-sidebar.css" rel="stylesheet">
 
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -22,12 +36,17 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <style type="text/css">
+    .img-responsive{
+        height: 200px;
+        width: 300px;
+    }
+    </style>
+
 </head>
 
 <body>
-
-    <!-- Navigation -->
-<div class="container">
+    <div class="container">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -35,160 +54,79 @@
                     <img alt="logo" src="/assets/images/logo.png" style="height: 150%">
                 </a>
             </div>
-        <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-                <input type="text" class="form-control" name="city" placeholder="City">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="cuisine" placeholder="Cuisine">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="chef" placeholder="Chef Name">
-            </div>
-            <button type="submit" class="btn btn-success">Search</button>
-        </form>
-                <ul class="nav navbar-nav navbar-right">
-<?php
-                if ($this->session->userdata('user_type') == "user") { ?>
-                    <li><a href="/users/user_profile/<?= $session_data['id'] ?>">User Account</a></li>
-                    <li><a href="/logins/logout">Logout</a></li>
-<?php           } 
-                  elseif ($this->session->userdata('user_type') == "chef") { ?>
-                    <li><a href="/chefs/chef_profile/<?= $session_data['id'] ?>">Chef Account</a></li> 
-                    <li><a href="/logins/logout">Logout</a></li> 
-<?php           
-                } else {
-?>
-                    <li><a href="/logins/login_page">Login/Register</a></li>
-<?php
-                }
-?>
-                </ul>
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="city" placeholder="City">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="cuisine" placeholder="Cuisine">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="chef" placeholder="Chef Name">
+                </div>
+                <button type="submit" class="btn btn-success">Search</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+        <?php if ($this->session->userdata('user_type') == "user") { ?>
+                <li><a href="/users/user_profile/<?= $this->session->userdata('id') ?>">User Account</a></li> <?php } 
+          else { ?>
+            <li><a href="/chefs/chef_profile/<?= $this->session->userdata('id') ?>">Chef Account</a></li> <?php } ?>
+            <li><a href="/logins/logout">Logout</a></li> 
+        </ul>
         </div>
     </nav>
-</div>
+    </div>
 
-    <!-- Page Content -->
-    <div class="container">
+    <div id="wrapper">
 
-        <!-- Page Header -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">
-                    <small>All Chefs</small>
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Filter by
-                    <span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                      <li><a href="#">Cuisine</a></li>
-                      <li><a href="#">Name</a></li>
-                      <li><a href="#">Location</a></li>
-                      <li class="divider"></li>
-                      <li><a href="#">About Us</a></li>
-                    </ul>
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <a href="/foods/all_food_no_filter/<?= $this->session->userdata('city')?>"><h3> Browse all food </h3></a>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Welcome, <?= $this->session->userdata('first_name') ?></h1>
+                        <h4>What are you craving today? Browse through to try something new.</h4>
+                        <?php 
+                            foreach ($all_chefs as $value) 
+                            {
+                        ?>
+                            <div class="col-md-4 portfolio-item">
+                                <img class="img-responsive" src="http://img-aws.ehowcdn.com/615x200/ehow/images/a04/ge/30/start-home_based-catering-business-800x800.jpg" alt="">
+                        <?php
+                                    if ($value['kitchen_name'] ==NULL)
+                                    {
+                          ?>          
+                                <h3>
+                                    <a href="#"><?= $value['first_name'] ?>'s Kitchen</a>
+                                </h3>     
+                        <?php
+                                    }
+                                    else
+                                    {        
+                          ?>      
+                                <h3>
+                                    <a href="/foods/show_chef_page/<?=$value['chef_id'] ?>"><?= $value['kitchen_name'] ?></a>
+                                </h3>  
+                                <h4><?= $value['avg_rating'];?></h4>   
+                            
+                        <?php
+                                     }
+                                     ?>
+                                </div> <!-- end column-->
+                            <?php    }
+                        ?>  
+                             
+
+                    </div>    
                 </div>
-                </h1>
-                
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <!-- Projects Row -->
-        <div class="row">
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <!-- Projects Row -->
-        <div class="row">
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-        </div>
-
-        <!-- Projects Row -->
-        <div class="row">
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <hr>
+            </div>    
+         <hr>
 
         <!-- Pagination -->
         <div class="row text-center">
@@ -220,26 +158,23 @@
         </div>
         <!-- /.row -->
 
-        <hr>
-
+        <hr>   
         <!-- Footer -->
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; JAMM 2015</p>
                 </div>
             </div>
             <!-- /.row -->
-        </footer>
+        </footer>         
+        </div>
+        <!-- /#page-content-wrapper -->
 
     </div>
-    <!-- /.container -->
+    <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
 
 </body>
 
