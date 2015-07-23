@@ -200,11 +200,22 @@
 					<h3>San Jose</h3>
 					<p>San Jose is known for all the cats and dogs it cooks. Yummy cats and dogs. Yum ipsum custodes cow burgers. Yes all the cats and dogs are 100% organic. Yes. Yes.</p>
 						<br>
-						<div class="city-btn">
-							<a href="/foods/all_food_by_city/San%20Jose" class="btn btn-success col-md-5 col-md-offset-0">Food</a>
-							<a href="#" class="btn btn-success col-md-5 col-md-offset-2">Chefs</a>
-
-						</div>
+			<?php
+			            if ($this->session->userdata('user_type')) {
+			?>
+				            <div class="city-btn">
+								<a href="/foods/all_food_by_city/San%20Jose" class="btn btn-success col-md-5 col-md-offset-0">Food</a>
+								<a href="/foods/all_chefs_by_city/San%20Jose" class="btn btn-success col-md-5 col-md-offset-2">Chefs</a>
+							</div>
+			<?php
+						} else {
+			?>
+							<div class="city-btn">
+			                    <a class="btn btn-success col-md-12" href="/logins/login_page">Register and Login to See Food in San Jose!</a>
+			                </div>
+			<?php
+			            }
+			?>
 						<div class="clearfix"></div>
 				</div>
 			</div>
@@ -217,10 +228,22 @@
 					<h3>Los Angeles</h3>
 					<p>Los Angeles cooks no human flesh. None. Human flesh is the last thing anyone in Los Angeles will serve you, ever. Unless possibly if you ask very nicely.</p>
 						<br>
-						<div class="city-btn">
-							<a href="/foods/all_food_by_city/Los%20Angeles" class="btn btn-success col-md-5 col-md-offset-0">Food</a>
-							<a href="/foods/all_food_by_city/Los%20Angeles" class="btn btn-success col-md-5 col-md-offset-2">Chefs</a>
-						</div>
+			<?php
+			            if ($this->session->userdata('user_type')) {
+			?>
+				            <div class="city-btn">
+								<a href="/foods/all_food_by_city/Los%20Angeles" class="btn btn-success col-md-5 col-md-offset-0">Food</a>
+								<a href="/foods/all_chefs_by_city/Los%20Angeles" class="btn btn-success col-md-5 col-md-offset-2">Chefs</a>
+							</div>
+			<?php
+						} else {
+			?>
+							<div class="city-btn">
+			                    <a class="btn btn-success col-md-12" href="/logins/login_page">Register and Login to See Food in Los Angeles!</a>
+			                </div>
+			<?php
+			            }
+			?>
 						<div class="clearfix"></div>
 				</div>
 			</div>
@@ -233,10 +256,22 @@
 					<h3>San Francisco</h3>
 					<p>Our chefs in San Francisco only eat Benedictine monks, so you have nothing to worry about. You're perfectly safe here, so feel free to stop by for a visit. (They know. Run.)</p>
 						<br>
-						<div class="city-btn">
-							<a href="/foods/all_food_by_city/San%20Francisco" class="btn btn-success col-md-5 col-md-offset-0">Food</a>
-							<a href="/foods/all_food_by_city/San%20Francisco" class="btn btn-success col-md-5 col-md-offset-2">Chefs</a>
-						</div>
+			<?php
+			            if ($this->session->userdata('user_type')) {
+			?>
+				            <div class="city-btn">
+								<a href="/foods/all_food_by_city/San%20Francisco" class="btn btn-success col-md-5 col-md-offset-0">Food</a>
+								<a href="/foods/all_chefs_by_city/San%20Francisco" class="btn btn-success col-md-5 col-md-offset-2">Chefs</a>
+							</div>
+			<?php
+						} else {
+			?>
+							<div class="city-btn">
+			                    <a class="btn btn-success col-md-12" href="/logins/login_page">Register and Login to See Food in San Francisco!</a>
+			                </div>
+			<?php
+			            }
+			?>
 						<div class="clearfix"></div>
 				</div>
 			</div>
