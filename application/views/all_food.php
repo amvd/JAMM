@@ -1,4 +1,4 @@
-<?php var_dump($food_info); 
+<?php // var_dump($food_info); 
         //if ($all_foods_info) {var_dump($all_foods_info);}; 
 //foreach ($food_info as $cuisine) { var_dump($cuisine['type']);} die();?>
 
@@ -31,8 +31,8 @@
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
-        $('#myModal').on('shown.bs.modal', function () {
-            $('#myInput').focus()
+        $('.img-responsive').on('shown.bs.modal', function () {
+            $('.modal-responsive', this).focus()
          });
     });
     </script>
@@ -76,11 +76,11 @@
                 <ul class="nav navbar-nav navbar-right">
 <?php
                 if ($this->session->userdata('user_type') == "user") { ?>
-                    <li><a href="/users/user_profile/<?= $session_data['id'] ?>">User Account</a></li>
+                    <li><a href="/users/user_profile/<?= $this->session->userdata['id'] ?>">User Account</a></li>
                     <li><a href="/logins/logout">Logout</a></li>
 <?php           } 
                   elseif ($this->session->userdata('user_type') == "chef") { ?>
-                    <li><a href="/chefs/chef_profile/<?= $session_data['id'] ?>">Chef Account</a></li> 
+                    <li><a href="/chefs/chef_profile/<?= $this->session->userdata['id'] ?>">Chef Account</a></li> 
                     <li><a href="/logins/logout">Logout</a></li> 
 <?php           
                 } else {
@@ -139,50 +139,50 @@
 
             <?php foreach ($food_info as $food) { ?>
             <div class="col-md-4 portfolio-item">
-                <img data-toggle="modal" data-target="#myModal" class="img-responsive" src="<?= $food['food_pic_url']; ?>" alt="">
+                <img data-toggle="modal" data-target="#myModal-<?= $food["id"] ?>" class="img-responsive" src="<?= $food['food_pic_url']; ?>" alt="">
                 <h3><?= $food['name']; ?></h3>
                 <h5> by <a href="#">Chef <?= $food['first_name']; ?></a></h5>
                 
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel"><?= $food['name']; ?> by Chef <?= $food['first_name']; ?></h4>
-      </div>
-      <div class="modal-body">
-        <img src="<?= $food['food_pic_url']; ?>" alt="">
-          <div class='modal_order_food'>
-            <h4>Cuisine: <?= $food['type'] ?></h4><br>
-            <h4>Description:</h4>
-            <p><?= $food['description'] ?></p>
-          </div><!--modal_order_food-->
-          <div class='modal_food_description'>
-            <h4><b>Allergens:</b></h4>
-            <p>Peanuts, Seafood</p>
-            <h2>Place Order</h2>
-            <form action="" method="post">
-                Qty:<input type='text' size='1' name='quantity'>
-                <select>
-                    <option>Size</option>
-                    <option>Small</option>
-                    <option>Medium</option>
-                    <option>Large</option>
-                </select>
-                $8.99
-            </form>            
-          </div>
-      </div><!--modal-body-->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Add to Cart</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!--END MODAL-->
+                <!-- Modal -->
+                <div class="modal fade" id="myModal-<?= $food["id"] ?>" class="modal-responsive" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" class="myModalLabel"><?= $food['name']; ?> by Chef <?= $food['first_name']; ?></h4>
+                      </div>
+                      <div class="modal-body">
+                        <img src="<?= $food['food_pic_url']; ?>" alt="">
+                          <div class='modal_order_food'>
+                            <h4>Cuisine: <?= $food['type'] ?></h4><br>
+                            <h4>Description:</h4>
+                            <p><?= $food['description'] ?></p>
+                          </div><!--modal_order_food-->
+                          <div class='modal_food_description'>
+                            <h4><b>Allergens:</b></h4>
+                            <p>Peanuts, Seafood</p>
+                            <h2>Place Order</h2>
+                            <form action="" method="post">
+                                Qty:<input type='text' size='1' name='quantity'>
+                                <select>
+                                    <option>Size</option>
+                                    <option>Small</option>
+                                    <option>Medium</option>
+                                    <option>Large</option>
+                                </select>
+                                $8.99
+                            </form>            
+                          </div>
+                      </div><!--modal-body-->
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Add to Cart</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--END MODAL-->
 
 
 
