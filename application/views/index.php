@@ -119,11 +119,11 @@
 
 <?php
                 if ($this->session->userdata('user_type') == "user") { ?>
-                    <a class="btn btn-success" href="/users/user_profile/<?= $session_data['id'] ?>">User Account</a>
+                    <a class="btn btn-success" href="/users/user_profile/<?= $this->session->userdata('id') ?>">User Account</a>
                     <a class="btn btn-success" href="/logins/logout">Logout</a>
 <?php           } 
                   elseif ($this->session->userdata('user_type') == "chef") { ?>
-                    <a class="btn btn-success" href="/chefs/chef_profile/<?= $session_data['id'] ?>">Chef Account</a>
+                    <a class="btn btn-success" href="/chefs/chef_profile/<?= $this->session->userdata('id') ?>">Chef Account</a>
                     <a class="btn btn-success" href="/logins/logout">Logout</a>
 <?php           
                 } else {

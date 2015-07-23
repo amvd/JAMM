@@ -84,17 +84,54 @@ class Food extends CI_Model{
 
 	public function get_foods_by_city($city) {
 		//get all foods from certain city / city
-		$query = "SELECT * FROM foods LEFT JOIN chefs 
+		$query = "SELECT * FROM foods
+							LEFT JOIN chefs 
 							ON foods.chef_id = chefs.id
+							LEFT JOIN cuisines
+							ON foods.cuisine_id = cuisines.id
 							WHERE city = ?";
-		$all_foods = $this->db->query($query, array($city))->result_array();
-				return $all_foods;
+		$all_foods = $this->db->query($query, array(urldecode($city)))->result_array();
+		return $all_foods;
 	} 
 
+	public function get_foods_no_filter($city) {
+		//get all foods no filters
+		$query = "SELECT foods.id, foods.name, foods.description, foods.food_pic_url, foods.created_at, foods.chef_id, foods.cuisine_id, 
+											cuisines.type, prices.size_id, sizes.small, sizes.medium, sizes.large, chefs.first_name, chefs.last_name FROM foods
+							LEFT JOIN cuisines
+							ON foods.cuisine_id = cuisines.id
+							LEFT JOIN prices
+							ON foods.id = prices.food_id
+							LEFT JOIN sizes
+							ON prices.size_id = sizes.id
+							LEFT JOIN chefs
+							ON chefs.id = foods.chef_id
+							WHERE city = ?";
+		$all_foods_info = $this->db->query($query, array(urldecode($city)))->result_array();
+		return $all_foods_info;
+	}
+
+	public function get_foods_by_cuisine($cuisine_type, $city) {
+		//get all food by cuisine type
+		$query = "SELECT foods.id, foods.name, foods.description, foods.food_pic_url, foods.created_at, foods.chef_id, foods.cuisine_id, 
+											cuisines.type, prices.size_id, sizes.small, sizes.medium, sizes.large, chefs.first_name, chefs.last_name, chefs.city FROM foods
+							LEFT JOIN cuisines
+							ON foods.cuisine_id = cuisines.id
+							LEFT JOIN prices
+							ON foods.id = prices.food_id
+							LEFT JOIN sizes
+							ON prices.size_id = sizes.id
+							LEFT JOIN chefs
+							ON chefs.id = foods.chef_id
+							WHERE cuisines.type = ? && chefs.city = ?";
+		return $this->db->query($query, array($cuisine_type, $city))->result_array();
+	}//all_foods_by_cuisine
+	
 //////////// END ALL FOODS PAGE /////////////
 
 
 /////////////// ALL CHEFS PAGE //////////////////
+
 
 	public function get_chefs_by_city($city) {
 		$query = "SELECT * FROM chefs WHERE city = ?";
