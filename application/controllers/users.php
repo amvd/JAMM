@@ -2,10 +2,26 @@
 
 class users extends CI_Controller {
 	
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('user');
+	}
 
 	public function user_profile($user_id)
 	{
 		$this->load->view('user_profile');
+	}
+
+	public function user_edit_profile()
+	{
+		$this->load->view('user_edit_profile');
+	}
+
+	public function user_bio_update()
+	{
+		$this->user->user_bio_update($this->input->post());
+		redirect('/users/user_profile');
 	}
 
 	public function user_orders_this_week()

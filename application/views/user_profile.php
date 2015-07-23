@@ -25,7 +25,12 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <style type="text/css">
+    #edit_button
+    {
+        color: white;
+    }
+    </style>
 </head>
 
 <body>
@@ -84,7 +89,8 @@
 
             <div class="col-md-9">
                 <h3>About <?= $session_data['first_name'] ?></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
+                <p><button type="submit" class="btn-xs btn-primary "><a href="/users/user_edit_profile" id="edit_button">Edit Profile</a> </button></p>
+                <p><?= $session_data['bio'] ?></p>
             </div>
 
         </div>

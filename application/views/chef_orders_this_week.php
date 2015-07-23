@@ -16,10 +16,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
     <style type="text/css">
-    body
-    {
-        padding-top: 70px;
-    }
+   
     </style>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -67,21 +64,13 @@
     <div class="container">
 
         <div class="row">
-
-            <div class="col-md-3">
-                <p class="lead">Shop Name</p>
-                <div class="list-group">
-                    <a href="/main/user_orders_this_week" class="list-group-item">This Week</a>
-                    <a href="/main/user_orders_this_month" class="list-group-item">This Month</a>
-                    <a href="/main/user_orders_this_lifetime" class="list-group-item">This Lifetime</a>
-                </div>
-            </div>
-
-            <div class="col-md-9">
+            <div class="col-md-12">
 
                 <div class="row">
+<?php               for ($i=1; $i<6 ; $i++) { 
+?>                       
 
-                    <div class="col-sm-4 col-lg-4 col-md-4">
+                    <div class="col-sm-3 col-lg-3 col-md-3">
                         <div class="thumbnail">
                             <img src="http://placehold.it/300x300" alt="">
                             <div class="caption">
@@ -93,8 +82,10 @@
                             
                         </div>
                     </div>
+<?php               }
+?>
 
-                    <div class="col-sm-4 col-lg-4 col-md-4">
+                    <div class="col-sm-3 col-lg-3 col-md-3">
                         <div class="thumbnail">
                             <img src="http://placehold.it/300x300" alt="">
                             <div class="caption">
@@ -107,7 +98,7 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-4 col-lg-4 col-md-4">
+                    <div class="col-sm-3 col-lg-3 col-md-3">
                         <div class="thumbnail">
                             <img src="http://placehold.it/300x300" alt="">
                             <div class="caption">
@@ -120,7 +111,7 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-4 col-lg-4 col-md-4">
+                    <div class="col-sm-3 col-lg-3 col-md-3">
                         <div class="thumbnail">
                             <img src="http://placehold.it/300x300" alt="">
                             <div class="caption">
@@ -133,7 +124,7 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-4 col-lg-4 col-md-4">
+                    <div class="col-sm-3 col-lg-3 col-md-3">
                         <div class="thumbnail">
                             <img src="http://placehold.it/300x300" alt="">
                             <div class="caption">
