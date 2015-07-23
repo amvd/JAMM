@@ -7,12 +7,12 @@ class foods extends CI_Controller {
 		$this->load->model('Food');
 	}
 
-	public function all_food_no_filter($city) 
-	{
-		//showing all foods without any filters
-		$all_foods_info = $this->Food->get_foods_no_filter($city);
-		$this->load->view('all_food', array('food_info' => $all_foods_info));
-	}
+	// public function all_food_no_filter($city) 
+	// {
+	// 	//showing all foods without any filters
+	// 	$all_foods_info = $this->Food->get_foods_no_filter($city);
+	// 	$this->load->view('all_food', array('food_info' => $all_foods_info));
+	// }
 
 	public function all_chefs() {
 		$this->load->view('all_chef');

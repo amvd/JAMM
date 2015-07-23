@@ -94,22 +94,22 @@ class Food extends CI_Model{
 		return $all_foods;
 	} 
 
-	public function get_foods_no_filter($city) {
-		//get all foods no filters
-		$query = "SELECT foods.id, foods.name, foods.description, foods.food_pic_url, foods.created_at, foods.chef_id, foods.cuisine_id, 
-											cuisines.type, prices.size_id, sizes.small, sizes.medium, sizes.large, chefs.first_name, chefs.last_name FROM foods
-							LEFT JOIN cuisines
-							ON foods.cuisine_id = cuisines.id
-							LEFT JOIN prices
-							ON foods.id = prices.food_id
-							LEFT JOIN sizes
-							ON prices.size_id = sizes.id
-							LEFT JOIN chefs
-							ON chefs.id = foods.chef_id
-							WHERE city = ?";
-		$all_foods_info = $this->db->query($query, array(urldecode($city)))->result_array();
-		return $all_foods_info;
-	}
+	// public function get_foods_no_filter($city) {
+	// 	//get all foods no filters
+	// 	$query = "SELECT foods.id, foods.name, foods.description, foods.food_pic_url, foods.created_at, foods.chef_id, foods.cuisine_id, 
+	// 										cuisines.type, prices.size_id, sizes.small, sizes.medium, sizes.large, chefs.first_name, chefs.last_name FROM foods
+	// 						LEFT JOIN cuisines
+	// 						ON foods.cuisine_id = cuisines.id
+	// 						LEFT JOIN prices
+	// 						ON foods.id = prices.food_id
+	// 						LEFT JOIN sizes
+	// 						ON prices.size_id = sizes.id
+	// 						LEFT JOIN chefs
+	// 						ON chefs.id = foods.chef_id
+	// 						WHERE city = ?";
+	// 	$all_foods_info = $this->db->query($query, array(urldecode($city)))->result_array();
+	// 	return $all_foods_info;
+	// }
 
 	public function get_foods_by_cuisine($cuisine_type, $city) {
 		//get all food by cuisine type
@@ -127,6 +127,11 @@ class Food extends CI_Model{
 		return $this->db->query($query, array($cuisine_type, $city))->result_array();
 	}//all_foods_by_cuisine
 	
+
+	public function display_food_in_modal() {
+		//to show food info in modal
+		
+	}
 //////////// END ALL FOODS PAGE /////////////
 
 
