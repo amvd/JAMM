@@ -115,7 +115,7 @@
                 <?php }//foreach ?>
 
                 <li><a href="/foods/all_food_by_city/<?= $food_info[0]['city'] ?>">Clear Filters</a></li>
-                <li><br><a href="/chefs/chef_profile/"><h6>View All Chefs</h6></a></li>
+                <li><br><a href="/foods/all_chefs_by_city/<?= $food_info[0]['city'] ?>"><h6>View All Chefs</h6></a></li>
             </ul>
             
         </div>

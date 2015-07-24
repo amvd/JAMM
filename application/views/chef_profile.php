@@ -91,7 +91,7 @@
 
         <!-- Portfolio Item Heading -->
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-12"><!--DON'T USE SESSION DATA FOR USER HERE, GET CHEF ID-->
                 <h1 class="page-header"><?= $this->session->userdata('first_name')?>'s Kitchen
                 <form action="/">
                     <!-- <input type="button"> -->

@@ -103,7 +103,7 @@
                                     {
                           ?>          
                                 <h3>
-                                    <a href="#"><?= $value['first_name'] ?>'s Kitchen</a>
+                                    <a href="/chefs/chef_profile/"><?= $value['first_name'] ?>'s Kitchen</a>
                                 </h3>     
                         <?php
                                     }

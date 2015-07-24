@@ -21,7 +21,7 @@ class users extends CI_Controller {
 	public function user_bio_update()
 	{
 		$this->user->user_bio_update($this->input->post());
-		redirect('/users/user_profile');
+		redirect('/users/user_profile/' . $this->session->userdata('id'));
 	}
 
 	public function user_orders()

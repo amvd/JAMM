@@ -26,7 +26,19 @@
         <div class="form-group">
             <label class="control-label col-xs-3" for="postalAddress">Your Bio:</label>
             <div class="col-xs-9">
-                <textarea rows="4" class="form-control" id="postalAddress" placeholder="Enter your bio here!" name="new_bio"></textarea>
+                <textarea rows="4" class="form-control" id="postalAddress" 
+<?php               if ($this->session->userdata('bio') == null) {
+?>
+                        placeholder="Enter your bio here!"
+<?php               } 
+?>
+                        name="new_bio">
+<?php
+                    if ($this->session->userdata("bio")) {
+                        echo $this->session->userdata('bio');
+                    }
+?>
+</textarea>
             </div>
         </div>
         <div class="form-group">
