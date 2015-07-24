@@ -36,9 +36,7 @@
             $('.modal-responsive', this).focus()
         })//for the modal;
 
-        $('form').submit(function(){
-
-        })//form submit
+        // $.post('/foods/insert_into_cart/', $('.myForm').serialize(), function
 
     })//document;
     </script>
@@ -79,12 +77,12 @@
                 <ul class="nav navbar-nav navbar-right">
 <?php
                 if ($this->session->userdata('user_type') == "user") { ?>
-                    <li><a href=""><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> (1)</a></li>
+                    <li><a href="/foods/display_cart/"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> (<?= $cart_qty['qty'] ?>)</a></li>
                     <li><a href="/users/user_profile/<?= $this->session->userdata('id') ?>">User Account</a></li>
                     <li><a href="/logins/logout">Logout</a></li>
 <?php           } 
                 elseif ($this->session->userdata('user_type') == "chef") { ?>
-                    <li><a href=""><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> (1)</a></li>
+                    <li><a href=""><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> (<?= $cart_qty['qty'] ?>)</a></li>
                     <li><a href="/chefs/chef_profile/<?= $this->session->userdata('id') ?>">Chef Account</a></li> 
                     <li><a href="/logins/logout">Logout</a></li> 
 <?php           } 
@@ -163,7 +161,7 @@
                             <h4><b>Allergens:</b></h4>
                             <p><?= $food['allergens'] ?></p>
                             <h2>Place Order</h2>
-                            <form action="/foods/insert_into_cart/<?= $food['id'] ?>" method="post">
+                            <form class="myForm" action="/foods/insert_into_cart/<?= $food['city'] ?>/<?= $food['id'] ?>" method="post">
                                 Qty:<input type='text' size='1' name='quantity'></div>
                                 <select name='something'>
                                   <?php foreach($food['pricing'] as $key => $price) { ?>
@@ -173,7 +171,7 @@
                       </div><!--modal-body-->
                       <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" data-dismiss="modal">Add to Cart</button>
+                        <button type="submit" class="btn btn-succes" >Add to Cart</button>
                             </form>            
                       </div>
                     </div>
