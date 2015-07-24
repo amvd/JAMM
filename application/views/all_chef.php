@@ -94,7 +94,7 @@
                         <h4>What are you craving today? Browse through to try something new.</h4>
                         <?php 
                             foreach ($all_chefs as $value) 
-                            {
+                            { 
                         ?>
                             <div class="col-md-4 portfolio-item">
                                 <img class="img-responsive" src="http://img-aws.ehowcdn.com/615x200/ehow/images/a04/ge/30/start-home_based-catering-business-800x800.jpg" alt="">
@@ -103,7 +103,7 @@
                                     {
                           ?>          
                                 <h3>
-                                    <a href="#"><?= $value['first_name'] ?>'s Kitchen</a>
+                                    <a href="/chefs/chef_profile/<?= $value['chef_id']?>"> <?= $value['first_name'] ?>'s Kitchen</a>
                                 </h3>     
                         <?php
                                     }
@@ -111,7 +111,7 @@
                                     {        
                           ?>      
                                 <h3>
-                                    <a href="/foods/show_chef_page/<?=$value['chef_id'] ?>"><?= $value['kitchen_name'] ?></a>
+                                    <a href="/chefs/chef_profile/<?=$value['chef_id'] ?>"><?= $value['kitchen_name'] ?></a>
                                 </h3>  
                                 <h4><?= $value['avg_rating'];?></h4>   
                             

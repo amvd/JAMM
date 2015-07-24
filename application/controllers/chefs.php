@@ -8,16 +8,18 @@ class Chefs extends CI_Controller {
 		$this->load->model('chef');
 	}
 
-	public function chef_profile()
+	public function chef_profile($chef_id)
 	{
 		//loads the chef profile page
-		$this->load->view('chef_profile');
+		$chef = $this->chef->get_chef_by_id($chef_id);
+		$this->load->view('chef_profile', array('chef'=>$chef));
 	}
 
 	//triggers when you click on "edit profile" in chef_profile and takes you to the form where you can edit your profile
-	public function chef_edit_profile()
+	public function chef_edit_profile($id)
 	{
-		$this->load->view('chef_edit_profile');
+		$chef = $this->chef->get_chef_by_id($id);
+		$this->load->view('chef_edit_profile',array('chef'=>$chef));
 	}
 
 	//triggers when you click on the submit button on the chef_edit_profile page
@@ -25,10 +27,11 @@ class Chefs extends CI_Controller {
 	public function chef_bio_update()
 	{
 		 // echo "in controller"; var_dump($this->input->post()); die();
-		$this->chef->chef_bio_update($this->input->post());
+		$chef_id = $this->chef->chef_bio_update($this->input->post());
+		
 		// $this->chef->grab_bio();
 		 // echo "in bio update controller"; var_dump($bio); die();
-		redirect('/chefs/chef_profile');
+		$this->chef_profile($chef_id);
 	}
 
 

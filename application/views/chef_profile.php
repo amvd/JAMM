@@ -1,6 +1,10 @@
-<?php var_dump($this->session->all_userdata()); $session_data = $this->session->all_userdata();
+<?php //var_dump($chef);
 
     // var_dump($this->session->userdata('bio'));
+// var_dump($chef['id']);
+
+// var_dump($this->session->userdata('id'));
+// var_dump($this->session->all_userdata());
 ?>
 
 
@@ -15,7 +19,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><?= $this->session->userdata('first_name')?>'s Profile</title>
+    <title><?= $chef['first_name']?>'s Profile</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -68,11 +72,11 @@
                 <ul class="nav navbar-nav navbar-right">
 <?php
                 if ($this->session->userdata('user_type') == "user") { ?>
-                    <li><a href="/users/user_profile/<?= $session_data['id'] ?>">User Account</a></li>
+                    <li><a href="/users/user_profile/<?= $this->session->userdata('id') ?>">User Account</a></li>
                     <li><a href="/logins/logout">Logout</a></li>
 <?php           } 
                   elseif ($this->session->userdata('user_type') == "chef") { ?>
-                    <li><a href="/chefs/chef_profile/<?= $session_data['id'] ?>">Chef Account</a></li> 
+                    <li><a href="/chefs/chef_profile/<?= $this->session->userdata('id') ?>">Chef Account</a></li> 
                     <li><a href="/logins/logout">Logout</a></li> 
 <?php           
                 } else {
@@ -92,7 +96,7 @@
         <!-- Portfolio Item Heading -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header"><?= $this->session->userdata('first_name')?>'s Kitchen
+                <h1 class="page-header"><?= $chef['first_name']?>'s Kitchen
                 <form action="/">
                     <!-- <input type="button"> -->
                 </form>
@@ -111,8 +115,12 @@
 
             <div class="col-md-9">
                 <h3>Chef's Bio</h3>
-                <p><button type="submit" class="btn-xs btn-primary "><a href="/chefs/chef_edit_profile" id="edit_button">Edit Profile</a> </button></p>
-                <p><?= $session_data['bio'] ?></p>
+<?php       if ($chef['id']== $this->session->userdata('id')) {
+?>              
+                <p><button type="submit" class="btn-xs btn-primary "><a href="/chefs/chef_edit_profile/<?=$chef['id'] ?>" id="edit_button">Edit Profile</a> </button></p>
+<?php       }
+?>                
+                <p><?= $chef['bio'] ?></p>
             </div>
 
         </div>
