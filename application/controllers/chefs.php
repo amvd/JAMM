@@ -21,7 +21,7 @@ class Chefs extends CI_Controller {
 
 	public function chef_orders_this_week($orders)
 	{
-		$this->load->view('chef_orders_this_week', $orders);
+		$this->load->view('chef_orders_this_week', array('orders' => $orders));
 	}
 
 	public function get_chef_orders_this_week()
@@ -68,6 +68,12 @@ class Chefs extends CI_Controller {
 		$menu_items = $this->chef->chef_grab_menu();
 		 // echo "in chef_grab_menu"; var_dump($menu_items); die();
 		$this->chef_menu($menu_items);
+	}
+
+	public function chef_update_fulfilled_status($order_id)
+	{
+		$this->chef->chef_update_fulfilled_status($order_id);
+		redirect('/chefs/get_chef_orders_this_week');
 	}
 
 
