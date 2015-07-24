@@ -25,6 +25,8 @@ class foods extends CI_Controller {
 		// var_dump($this->input->post()); die();
 		$food_info = $this->Food->get_foods_by_city($city);
 		$all_food = $food_info;
+		// var_dump($food_info); die();
+		// $this->Food->display_food_in_modal($city, $food_info);
 		$this->load->view('all_food', array('food_info' => $food_info, 'all_food' => $all_food));
 	}
 
@@ -52,6 +54,18 @@ class foods extends CI_Controller {
 
 	}
 
+	public function display_model($city, $food_id){
+		var_dump($this->input->post()); die();
+		$food_in_modal = $this->Food->display_food_in_modal($city, $food_id);
+		var_dump($food_in_modal); die();
+	}
+
+	public function insert_into_cart($food_id) {
+		//put post info from modal into cart
+		// var_dump($this->input->post()); die();
+		$this->Food->insert_into_cart_table($food_id, $this->input->post());
+		
+	}
 
 }//end of foods controller
 

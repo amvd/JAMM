@@ -55,8 +55,8 @@ class chef extends CI_Model
 	public function get_chef_orders_this_week($post)
 	{
 		$query = "SELECT orders.id, orders.qty, orders.pickup_date, 
-		orders.special_instructions, 
-		orders.created_at, orders.user_id, orders.food_id, 
+		orders.special_instructions, orders.fulfilled,
+		orders.created_at, orders.user_id, orders.food_id,
         foods.id, foods.name, foods.description, foods.food_pic_url, 
         foods.created_at, foods.chef_id, foods.cuisine_id, 
         cuisines.type, prices.size_id, sizes.small, sizes.medium, sizes.large, 
@@ -66,11 +66,27 @@ class chef extends CI_Model
 		LEFT JOIN cuisines on cuisines.id = foods.cuisine_id
 		LEFT JOIN prices on foods.id = prices.food_id
 		LEFT JOIN sizes on sizes.id = prices.size_id
-		WHERE chefs.id = ?";
+		WHERE chefs.id = ?
+		ORDER BY orders.pickup_date DESC";
 
-		$value = array($post['id']);
-		return $this->db->query($query, $value)->result_array();
+		// echo "in model"; var_dump($this->session->all_userdata()); die();
+		$value = array($this->session->userdata('id'))[0];
+		 // echo "in model"; var_dump($value); die();
 
+		$chef_orders = $this->db->query($query, $value)->result_array();
+		 // echo "in model chef_orders"; var_dump($chef_orders); die();
+		return $chef_orders;
+
+	}
+
+	public function chef_update_fulfilled_status($order_id)
+	{
+		$query = "UPDATE Orders SET fulfilled = ? WHERE food_id = ?";
+		$fulfilled = "0";
+		$values = array($fulfilled, $order_id);
+		 // echo "in model"; var_dump($values); die();
+		$result = $this->db->query($query, $values);
+		 // echo "in model"; var_dump($result); die();
 	}
 
 

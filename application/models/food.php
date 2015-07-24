@@ -84,13 +84,48 @@ class Food extends CI_Model{
 
 	public function get_foods_by_city($city) {
 		//get all foods from certain city / city
-		$query = "SELECT * FROM foods
-							LEFT JOIN chefs 
-							ON foods.chef_id = chefs.id
+		// $query = "SELECT * FROM foods
+		// 					LEFT JOIN chefs 
+		// 					ON foods.chef_id = chefs.id
+		// 					LEFT JOIN cuisines
+		// 					ON foods.cuisine_id = cuisines.id
+		// 					WHERE city = ?";
+
+		$query = "SELECT foods.id, foods.name, foods.description, foods.food_pic_url, foods.created_at, foods.chef_id, foods.cuisine_id, 
+cuisines.type, prices.food_id, group_concat(distinct sizes.type) AS sizes, group_concat(distinct prices.price) AS prices, chefs.first_name, chefs.last_name, chefs.city, group_concat(distinct allergens.allergen) AS allergens FROM foods
 							LEFT JOIN cuisines
 							ON foods.cuisine_id = cuisines.id
-							WHERE city = ?";
+							LEFT JOIN prices
+							ON foods.id = prices.food_id
+							LEFT JOIN sizes
+							ON prices.size_id = sizes.id
+							LEFT JOIN chefs
+							ON foods.chef_id = chefs.id
+							LEFT JOIN foods_allergens
+							ON foods.id = foods_allergens.food_id
+							LEFT JOIN allergens
+							ON foods_allergens.allergen_id = allergens.id
+							WHERE chefs.city = ?
+					    GROUP BY foods.id";
+
 		$all_foods = $this->db->query($query, array(urldecode($city)))->result_array();
+		// foreach($all_foods as $food) {
+		for ($i=0; $i < count($all_foods) ; $i++)
+		{
+			$sizes = explode(",", $all_foods[$i]['sizes']);
+			// var_dump($sizes111);
+			$all_foods[$i]['sizes'] = $sizes;
+
+			$prices = explode(",", $all_foods[$i]['prices']);
+			// var_dump($prices111);
+			$all_foods[$i]['prices'] = $prices;
+			$jcounter = count($sizes);
+			for ($j=0; $j< $jcounter; $j++)
+			{
+
+				$all_foods[$i]['pricing'][$sizes[$j]] = $prices[$j];
+			};
+		};
 		return $all_foods;
 	} 
 
@@ -114,7 +149,7 @@ class Food extends CI_Model{
 	public function get_foods_by_cuisine($cuisine_type, $city) {
 		//get all food by cuisine type
 		$query = "SELECT foods.id, foods.name, foods.description, foods.food_pic_url, foods.created_at, foods.chef_id, foods.cuisine_id, 
-											cuisines.type, prices.size_id, sizes.small, sizes.medium, sizes.large, chefs.first_name, chefs.last_name, chefs.city FROM foods
+											cuisines.type, prices.food_id, sizes.type, prices.price, chefs.first_name, chefs.last_name, chefs.city FROM foods
 							LEFT JOIN cuisines
 							ON foods.cuisine_id = cuisines.id
 							LEFT JOIN prices
@@ -128,10 +163,40 @@ class Food extends CI_Model{
 	}//all_foods_by_cuisine
 	
 
-	public function display_food_in_modal() {
+	public function display_food_in_modal($city, $food_id) {
 		//to show food info in modal
-		
+		$query = "SELECT foods.id, foods.name, foods.description, foods.food_pic_url, foods.created_at, foods.chef_id, foods.cuisine_id, 
+											cuisines.type, prices.food_id, sizes.type, prices.price, chefs.first_name, chefs.last_name, chefs.city FROM foods
+							LEFT JOIN cuisines
+							ON foods.cuisine_id = cuisines.id
+							LEFT JOIN prices
+							ON foods.id = prices.food_id
+							LEFT JOIN sizes
+							ON prices.size_id = sizes.id
+							LEFT JOIN chefs
+							ON chefs.id = foods.chef_id
+              WHERE chefs.city = ? AND foods.id = ?;";
+    $food_in_modal = $this->db->query($query, array($city, $food_id))->result_array();
+    return $food_in_modal;
+	}//display_food_in_modal
+
+	public function insert_into_cart_table($food_id, $post) {
+		//put into cart material
+
+		$explosion = explode(" ", $post['something']);
+		$post_size = $explosion[0];
+		$post_price = $explosion[1];
+
+		$query = "INSERT INTO carts(qty, food_size, user_id, food_id, created_at, updated_at)
+							VALUES (?, ?, ?, ?, NOW(), NOW())";
+		$this->db->query($query, array($post['quantity'], $post_size, $this->session->userdata('id'), $food_id));
 	}
+
+
+
+
+
+
 //////////// END ALL FOODS PAGE /////////////
 
 
