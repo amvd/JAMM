@@ -83,13 +83,7 @@ class Food extends CI_Model{
 /////////// ALL FOODS PAGE //////////////////
 
 	public function get_foods_by_city($city) {
-		//get all foods from certain city / city
-		// $query = "SELECT * FROM foods
-		// 					LEFT JOIN chefs 
-		// 					ON foods.chef_id = chefs.id
-		// 					LEFT JOIN cuisines
-		// 					ON foods.cuisine_id = cuisines.id
-		// 					WHERE city = ?";
+		//get all foods from certain city 
 
 		$query = "SELECT foods.id, foods.name, foods.description, foods.food_pic_url, foods.created_at, foods.chef_id, foods.cuisine_id, 
 cuisines.type, prices.food_id, group_concat(distinct sizes.type) AS sizes, group_concat(distinct prices.price) AS prices, chefs.first_name, chefs.last_name, chefs.city, group_concat(distinct allergens.allergen) AS allergens FROM foods
@@ -149,7 +143,8 @@ cuisines.type, prices.food_id, group_concat(distinct sizes.type) AS sizes, group
 	public function get_foods_by_cuisine($cuisine_type, $city) {
 		//get all food by cuisine type
 		$query = "SELECT foods.id, foods.name, foods.description, foods.food_pic_url, foods.created_at, foods.chef_id, foods.cuisine_id, 
-											cuisines.type, prices.food_id, sizes.type, prices.price, chefs.first_name, chefs.last_name, chefs.city FROM foods
+											cuisines.type, prices.food_id, group_concat(distinct sizes.type) AS sizes, group_concat(distinct prices.price) AS prices, 
+											chefs.first_name, chefs.last_name, chefs.city, group_concat(distinct allergens.allergen) AS allergens FROM foods
 							LEFT JOIN cuisines
 							ON foods.cuisine_id = cuisines.id
 							LEFT JOIN prices
@@ -158,8 +153,30 @@ cuisines.type, prices.food_id, group_concat(distinct sizes.type) AS sizes, group
 							ON prices.size_id = sizes.id
 							LEFT JOIN chefs
 							ON chefs.id = foods.chef_id
+							LEFT JOIN foods_allergens
+							ON foods.id = foods_allergens.food_id
+							LEFT JOIN allergens
+							ON foods_allergens.allergen_id = allergens.id
+							LEFT JOIN carts
+							ON foods.id = carts.food_id
 							WHERE cuisines.type = ? && chefs.city = ?";
-		return $this->db->query($query, array($cuisine_type, $city))->result_array();
+
+		$all_foods = $this->db->query($query, array($cuisine_type, urldecode($city)))->result_array();
+		for ($i=0; $i < count($all_foods) ; $i++)
+		{
+			$sizes = explode(",", $all_foods[$i]['sizes']);
+			$all_foods[$i]['sizes'] = $sizes;
+
+			$prices = explode(",", $all_foods[$i]['prices']);
+			$all_foods[$i]['prices'] = $prices;
+			$jcounter = count($sizes);
+			for ($j=0; $j< $jcounter; $j++)
+			{
+
+				$all_foods[$i]['pricing'][$sizes[$j]] = $prices[$j];
+			};
+		};
+		return $all_foods;
 	}//all_foods_by_cuisine
 	
 
