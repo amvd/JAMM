@@ -63,11 +63,11 @@ class Food extends CI_Model{
 		//first checks DB and if true, then log in
 		$query = "SELECT * FROM chefs WHERE email = ?";
 		$chef_info = $this->db->query($query, array($post['email']))->row_array();
+		
 		if ($chef_info){
 			if (md5($post['password']) == $chef_info['password']){
 				$this->session->set_userdata('user_type', "chef");
 				$this->session->set_userdata('logged_in', true);
-				$this->session->set_userdata('user_type', "chef");
 				return $chef_info; //to put into session
 			}
 			else
