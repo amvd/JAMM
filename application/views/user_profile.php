@@ -1,5 +1,6 @@
-<?php var_dump($this->session->all_userdata()); 
-      $session_data = $this->session->all_userdata();?>
+<?php //var_dump($this->session->all_userdata()); 
+      $session_data = $this->session->all_userdata();
+      var_dump($session_data) ?>
 
 
 <!DOCTYPE html>
@@ -110,7 +111,7 @@
         <div class="row">
 
             <div class="col-lg-12">
-                <h3 class="page-header"><a href="/Users/user_orders_this_week">Your Recent Orders</a></h3>
+                <h3 class="page-header"><a href="/Users/get_user_orders_this_week">Your Recent Orders</a></h3>
             </div>
 
             <div class="col-sm-3 col-xs-6">

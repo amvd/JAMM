@@ -1,3 +1,7 @@
+<?php //var_dump($this->session->all_userdata()); 
+      $session_data = $this->session->all_userdata();
+      // var_dump($session_data) ?>
+
 <!DOCTYPE html>
 <html lang="en">
 

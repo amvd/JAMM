@@ -25,7 +25,7 @@
 <body>
 
 <div class="bs-example">
-    <h1>Edit Your Profile</h1>
+    <h1>Edit Your Menu</h1>
     <form class="form-horizontal" action="/chefs/chef_add_menu" method="post">
 
 <?php
