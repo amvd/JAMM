@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,11 +23,23 @@
 <div class="bs-example">
     <h1>Edit Your Profile</h1>
     <form class="form-horizontal" action="/chefs/chef_bio_update" method="post">
-        
+        <input type="hidden" name="chef_profile_id" value="<?=$chef['id']?>">
         <div class="form-group">
             <label class="control-label col-xs-3" for="postalAddress">Your Bio:</label>
             <div class="col-xs-9">
-                <textarea rows="4" class="form-control" id="postalAddress" placeholder="Enter your bio here!" name="new_bio"></textarea>
+                <textarea rows="4" class="form-control" id="postalAddress" 
+<?php               if ($chef['bio'] == null) {
+?>
+                       placeholder="Enter your bio here!"
+<?php               } 
+?>
+                       name="new_bio">
+<?php
+                   if ($chef['bio']) {
+                       echo $chef['bio'];
+                   }
+?>
+</textarea>
             </div>
         </div>
         <div class="form-group">

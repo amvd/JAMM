@@ -6,12 +6,13 @@ class chef extends CI_Model
 	public function chef_bio_update($post)
 	{
 		 // echo "in model"; var_dump($this->session->all_userdata());
-		// echo "in model"; var_dump($post);
+		 // echo "in model"; var_dump($post);
 		 // echo "in model"; var_dump($this->session->userdata('id')); die();
 		$query = "UPDATE Chefs SET bio = ?  WHERE Chefs.id = ?";
-		$value = array($post['new_bio'], $this->session->userdata('id'));
+		$value = array($post['new_bio'], $post['chef_profile_id']);
 		$this->db->query($query, $value);
-		$this->session->set_userdata('bio', $post['new_bio']);
+		return $post['chef_profile_id'];
+
 	}
 
 	public function chef_add_menu($post)
@@ -89,11 +90,11 @@ sizes.id, sizes.type FROM Orders
 	}
 
 
+	public function get_chef_by_id($chef_id){
+		$query = "SELECT * from chefs where id = $chef_id";
+		return $this->db->query($query)->row_array();
 
-
-
-
-
+	}
 }
 
 ?>
