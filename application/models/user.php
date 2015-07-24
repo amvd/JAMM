@@ -3,13 +3,13 @@
 class user extends CI_Model
 {
 
-	public function user_bio_update($post)
+	public function user_bio_update($post, $pic_url)
 	{
 		 // echo "in model"; var_dump($this->session->all_userdata());
 		// echo "in model"; var_dump($post);
 		 // echo "in model"; var_dump($this->session->userdata('id')); die();
-		$query = "UPDATE Users SET bio = ?  WHERE Users.id = ?";
-		$value = array($post['new_bio'], $this->session->userdata('id'));
+		$query = "UPDATE Users SET bio = ?, profile_pic_url = ?  WHERE Users.id = ?";
+		$value = array($post['new_bio'], $pic_url, $this->session->userdata('id'));
 		$this->db->query($query, $value);
 		$this->session->set_userdata('bio', $post['new_bio']);
 	}
@@ -53,7 +53,8 @@ sizes.id, sizes.type FROM Orders
 	public function get_user_by_id($id)
 	{
 		$query = "SELECT * FROM users WHERE id = ?";
-		$this->db->query($query, [$id])->row_array();
+		
+		return $this->db->query($query, $id)->row_array();
 	}
 
 

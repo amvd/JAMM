@@ -1,7 +1,7 @@
-<?php //var_dump($this->session->all_userdata()); 
+<?php // var_dump($this->session->all_userdata()); 
       $session_data = $this->session->all_userdata();
       // var_dump($session_data);
-      var_dump($user);
+      // var_dump($user);
       ?>
 
 
@@ -88,18 +88,18 @@
         <!-- Portfolio Item Heading -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header"><?= $user['first_name'] . " " . $user['last_name'] ?>
-                    <small></small>
-                </h1>
+                <h1 class="
             </div>
         </div>
-        <!-- /.row -->
+        <!-- /.row -->page-header"><?= $user['first_name'] . " " . $user['last_name'] ?>
+                    <small></small>
+                </h1>
 
         <!-- Portfolio Item Row -->
         <div class="row">
 
             <div class="col-md-3">
-                <img class="img-responsive" src="http://placehold.it/300x300" alt="">
+                <img class="img-responsive" src="/assets/images/pics/<?= $user['profile_pic_url']; ?>" alt="">
             </div>
 
             <div class="col-md-9">

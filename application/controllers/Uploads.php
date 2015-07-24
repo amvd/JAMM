@@ -16,10 +16,10 @@ class Uploads extends CI_Controller {
 	function do_upload()
 	{
 		$config['upload_path'] = 'assets/images/uploads';
-		$config['allowed_types'] = 'gif|jpg|png';
-		// $config['max_size']	= '100';
-		// $config['max_width']  = '1024';
-		// $config['max_height']  = '768';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		$config['max_size']	= '0';
+		$config['max_width']  = '0';
+		$config['max_height']  = '0';
 		$config['file_name'] = 'profile';
 
 		$this->load->library('upload', $config);
@@ -47,5 +47,37 @@ class Uploads extends CI_Controller {
 	}
 
 
+	function pic_upload()
+	{
+		$config['upload_path'] = 'assets/images/pics';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		$config['max_size']	= '0';
+		$config['max_width']  = '0';
+		$config['max_height']  = '0';
+		$config['file_name'] = 'profile';
+
+		$this->load->library('upload', $config);
+
+		if ( ! $this->upload->pic_upload())
+		{
+
+			$error = array('error' => $this->upload->display_errors());
+
+			var_dump($error);
+			$this->session->set_flashdata('error', $error);
+
+			redirect("/Uploads");
+		}
+		else
+		{
+			$data = array('upload_data' => $this->upload->data());
+
+			// $this->session->set_flashdata('error');
+
+			$this->load->view('upload_success', $data);
+
+
+		}
+	}
 
 }

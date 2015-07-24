@@ -23,14 +23,14 @@
 
 <p>Your file was successfully uploaded.</p>
 
-<!-- <ul>
+<ul>
 <?php
 	foreach ($upload_data as $item => $value) {
 ?>
 	<li><?php echo $item;?>: <?php echo $value;?></li>
 <?php
 	}; ?>
-</ul>  -->
+</ul>  
 
 <h1>Your New Profile Picture</h1>
 
