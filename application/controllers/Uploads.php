@@ -22,13 +22,14 @@ class Uploads extends CI_Controller {
 		// $config['max_height']  = '768';
 		$config['file_name'] = 'profile';
 
-
 		$this->load->library('upload', $config);
 
 		if ( ! $this->upload->do_upload())
 		{
+
 			$error = array('error' => $this->upload->display_errors());
 
+			var_dump($error);
 			$this->session->set_flashdata('error', $error);
 
 			redirect("/Uploads");

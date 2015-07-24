@@ -10,12 +10,14 @@ class users extends CI_Controller {
 
 	public function user_profile($user_id)
 	{
-		$this->load->view('user_profile');
+		
+		$this->load->view('user_profile', ["user" => $this->user->get_user_by_id($user_id)]);
 	}
 
-	public function user_edit_profile()
+	public function user_edit_profile($id)
 	{
-		$this->load->view('user_edit_profile');
+		$user = $this->user->get_user_by_id($id);
+		$this->load->view('user_edit_profile', ["user" => $user]);
 	}
 
 	public function user_bio_update()

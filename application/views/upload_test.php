@@ -22,12 +22,12 @@
 <br>
 <div class="container">
 
-<form method="post" action="/uploads/do_upload" enctype="multipart/form-data">
-	<input type="file" name="userfile" size="20" />
+<form method="post" action="/Uploads/do_upload" enctype="multipart/form-data">
+	<input type="file" name="userfile" size="20" >
 
 	<br /><br />
 
-	<?php echo form_open_multipart('/uploads/do_upload');?>
+	
 
 	<input type="submit" value="upload" name="submit">
 
@@ -35,6 +35,7 @@
 
 </div>
 
+<?php echo form_open_multipart('/Uploads/do_upload');?>
 
 <br>
 <p class="text-center">&copy; JAMM, Inc.</p>

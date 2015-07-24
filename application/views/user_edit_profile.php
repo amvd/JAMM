@@ -21,20 +21,20 @@
 
 <div class="bs-example">
     <h1>Edit Your Profile</h1>
-    <form class="form-horizontal" action="/users/user_bio_update" method="post">
+    <form class="form-horizontal" action="/users/user_bio_update" method="post" enctype="multipart/form-data">
         
         <div class="form-group">
             <label class="control-label col-xs-3" for="postalAddress">Your Bio:</label>
             <div class="col-xs-9">
                 <textarea rows="4" class="form-control" id="postalAddress" 
-<?php               if ($this->session->userdata('bio') == null) {
+<?php               if ($user["bio"] == null) {
 ?>
                         placeholder="Enter your bio here!"
 <?php               } 
 ?>
                         name="new_bio">
 <?php
-                    if ($this->session->userdata("bio")) {
+                    if ($user["bio"]) {
                         echo $this->session->userdata('bio');
                     }
 ?>
@@ -43,7 +43,7 @@
         </div>
         <div class="form-group">
             <label class="control-label col-xs-3" for="postalAddress">Select image to upload:</label>
-    		<input type="file" name="fileToUpload" id="fileToUpload">
+    		<input type="file" name="fileToUpload" id="fileToUpload" size="20">
 		</div>
 
         <br>

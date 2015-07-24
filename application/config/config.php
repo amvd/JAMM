@@ -2,7 +2,7 @@
 
 $config['base_url']	= '';
 
-$config['index_page'] = '';
+$config['index_page'] = 'index.php';
 
 $config['uri_protocol']	= 'AUTO';
 

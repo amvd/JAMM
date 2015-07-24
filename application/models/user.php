@@ -50,7 +50,11 @@ sizes.id, sizes.type FROM Orders
 	}
 
 
-
+	public function get_user_by_id($id)
+	{
+		$query = "SELECT * FROM users WHERE id = ?";
+		$this->db->query($query, [$id])->row_array();
+	}
 
 
 

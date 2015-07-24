@@ -1,6 +1,10 @@
 <?php //var_dump($this->session->all_userdata()); 
       $session_data = $this->session->all_userdata();
-      var_dump($session_data) ?>
+      // var_dump($session_data);
+      var_dump($user);
+      ?>
+
+
 
 
 <!DOCTYPE html>
@@ -84,7 +88,7 @@
         <!-- Portfolio Item Heading -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header"><?= $session_data['first_name'] . " " . $session_data['last_name'] ?>
+                <h1 class="page-header"><?= $user['first_name'] . " " . $user['last_name'] ?>
                     <small></small>
                 </h1>
             </div>
@@ -99,9 +103,9 @@
             </div>
 
             <div class="col-md-9">
-                <h3>About <?= $session_data['first_name'] ?></h3>
-                <p><button type="submit" class="btn-xs btn-primary "><a href="/users/user_edit_profile" id="edit_button">Edit Profile</a> </button></p>
-                <p><?= $session_data['bio'] ?></p>
+                <h3>About <?= $user['first_name'] ?></h3>
+                <p><button type="submit" class="btn-xs btn-primary "><a href="/users/user_edit_profile/<?= $user['id']; ?>" id="edit_button">Edit Profile</a> </button></p>
+                <p><?= $user['bio'] ?></p>
             </div>
 
         </div>
