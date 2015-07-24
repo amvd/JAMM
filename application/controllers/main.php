@@ -14,7 +14,15 @@ class Main extends CI_Controller {
 		$this->load->view("index");
 	}
 
+	public function test_maps()
+	{
+		$this->load->view("testmaps");
+	}
 
+	public function test_upload()
+	{
+		$this->load->view("upload_test");
+	}
 	
 }
 	
