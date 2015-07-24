@@ -7,7 +7,10 @@
 <!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 	<style type="text/css">
-		
+		#profilepic {
+			max-height: 700px;
+			max-width: 700px;
+		}
 	</style>
 	
 </head>
@@ -18,17 +21,25 @@
 <div class="container">
 
 
-<h1>Your file was successfully uploaded.</h1>
+<p>Your file was successfully uploaded.</p>
 
-<ul>
-<?php foreach ($upload_data as $item => $value):?>
-<li><?php echo $item;?>: <?php echo $value;?></li>
-<?php endforeach; ?>
-</ul>
+<!-- <ul>
+<?php
+	foreach ($upload_data as $item => $value) {
+?>
+	<li><?php echo $item;?>: <?php echo $value;?></li>
+<?php
+	}; ?>
+</ul>  -->
 
-<p><?php echo anchor('upload', 'Upload Another File!'); ?></p>
+<h1>Your New Profile Picture</h1>
+
+<img id="profilepic" src="/assets/images/uploads/<?= $upload_data["file_name"]; ?>" alt="uploaded image">
+
+<p><?php echo anchor('/uploads/index', 'Upload Another File!'); ?></p>
 
 </div>
+
 
 
 <br>
