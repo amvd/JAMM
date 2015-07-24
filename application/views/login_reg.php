@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 	<style type="text/css">
 		.login-background {
-			background: url(assets/images/kitchen.jpg) no-repeat center center;
+			background: url(/kitchen.jpg) no-repeat center center;
 			background-size: cover;
 			padding: 200px 0;
 		}
