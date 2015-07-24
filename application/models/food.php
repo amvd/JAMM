@@ -197,21 +197,56 @@ cuisines.type, prices.food_id, group_concat(distinct sizes.type) AS sizes, group
     return $food_in_modal;
 	}//display_food_in_modal
 
+	public function get_all_cart_info(){
+		//TO GET THE WHOLE CART
+		$query = "SELECT * FROM carts
+							WHERE carts.user_id = ?";
+		$whole_cart = $this->db->query($query, array($this->session->userdata('id')))->result_array();
+		return $whole_cart;
+	}
+
 	public function insert_into_cart_table($food_id, $post) {
 		//put into cart material
 
 		$explosion = explode(" ", $post['something']);
 		$post_size = $explosion[0];
 		$post_price = $explosion[1];
+		$whole_cart = $this->get_all_cart_info();
+		$food_ids = array();
+		$food_sizes = array();
+		// var_dump($whole_cart); die();
 
-		$query = "INSERT INTO carts(qty, food_size, user_id, food_id, created_at, updated_at)
-							VALUES (?, ?, ?, ?, NOW(), NOW())";
-		$this->db->query($query, array($post['quantity'], $post_size, $this->session->userdata('id'), $food_id));
+		foreach($whole_cart as $food_id_in_cart) {
+			$food_ids[] = $food_id_in_cart['food_id'];
+			$food_sizes[] = $food_id_in_cart['food_size'];
+			if ($food_id == $food_id_in_cart['food_id'] && $post_size == $food_id_in_cart['food_size']){
+				$query = "UPDATE carts SET carts.qty = ?
+									WHERE carts.food_id = ? AND carts.food_size = ?";
+				$this->db->query($query, array(($post['quantity'] + $food_id_in_cart['qty']), $food_id, $post_size));				
+			}
+		}//foreach
+		
+		if (!(in_array($food_id, $food_ids))   ||   ((in_array($food_id, $food_ids)) && !(in_array($post_size, $food_sizes)))  ||  (!(in_array($food_id, $food_ids)) && (in_array($post_size, $food_sizes)))   ) {
+			$query = "INSERT INTO carts(qty, food_size, user_id, food_id, created_at, updated_at)
+								VALUES (?, ?, ?, ?, NOW(), NOW())";
+			$this->db->query($query, array($post['quantity'], $post_size, $this->session->userdata('id'), $food_id));				
+		}//if in array
+	
+	}//inserti into cart
+
+
+	public function get_cart_item_info($cart_num, $food_id, $size) {
+
+		$query = "SELECT * FROM foods
+							LEFT JOIN prices
+							ON foods.id = prices.food_id
+							LEFT JOIN sizes
+							ON prices.size_id = sizes.id
+							WHERE prices.food_id = ?
+							AND sizes.type = ?";
+		$cart_info = $this->db->query($query, array($food_id, $size))->row_array();
+		return $cart_info;
 	}
-
-
-
-
 
 
 //////////// END ALL FOODS PAGE /////////////
@@ -236,11 +271,19 @@ cuisines.type, prices.food_id, group_concat(distinct sizes.type) AS sizes, group
 
 /////////////// CART PAGE //////////////////	
 	public function get_cart($user_id){
-		$query = "SELECT * FROM carts
-				  JOIN foods on carts.food_id =	foods.id
-				  JOIN chefs on foods.chef_id = chefs.id
-					WHERE user_id = $user_id ";
-		$user_cart = $this->db->query($query)->result_array();
+		$query = "SELECT carts.qty, carts.food_size, users.first_name, foods.name FROM carts
+							LEFT JOIN foods
+							ON carts.food_id = foods.id
+							LEFT JOIN users
+							ON carts.user_id = users.id
+							WHERE users.id = ? ";
+		$user_cart = $this->db->query($query, array($user_id))->result_array();
+		// var_dump($user_cart); die();
+		$qty = 0;
+		foreach ($user_cart as $cart) {
+			$qty = $qty + $cart['qty'];
+		}
+		$user_cart['qty'] = $qty;
 		return $user_cart;
 	}
 

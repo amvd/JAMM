@@ -1,4 +1,4 @@
-
+<?php //var_dump($user_cart); die(); ?>
 <html>
 <head>
 	<title>Cart</title>
@@ -65,19 +65,18 @@
                 <ul class="nav navbar-nav navbar-right">
 <?php
                 if ($this->session->userdata('user_type') == "user") { ?>
-                    <li><a href="/users/user_profile/<?= $session_data['id'] ?>">User Account</a></li>
+                    <li><a href="/foods/display_cart/"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> (<?= $user_cart['qty'] ?>)</a></li>
+                    <li><a href="/users/user_profile/<?= $this->session->userdata('id') ?>">User Account</a></li>
                     <li><a href="/logins/logout">Logout</a></li>
 <?php           } 
-                  elseif ($this->session->userdata('user_type') == "chef") { ?>
-                    <li><a href="/chefs/chef_profile/<?= $session_data['id'] ?>">Chef Account</a></li> 
+                elseif ($this->session->userdata('user_type') == "chef") { ?>
+                    <li><a href=""><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> (<?= $user_cart['qty'] ?>)</a></li>
+                    <li><a href="/chefs/chef_profile/<?= $this->session->userdata('id') ?>">Chef Account</a></li> 
                     <li><a href="/logins/logout">Logout</a></li> 
-<?php           
-                } else {
-?>
+<?php           } 
+                else { ?>
                     <li><a href="/logins/login_page">Login/Register</a></li>
-<?php
-                }
-?>
+<?php           } ?>
                 </ul>
 		</div>
 	</nav>
@@ -94,8 +93,8 @@
 					<tr>
 						<input type="hidden" name="cart_item" value="<?= $value['cart.id']; ?>">
 						<td><img src="http://goodtoknow.media.ipcdigital.co.uk/111/00000cb9d/9159/Red-Thai-chicken-bean-and-bamboo-curry.jpg" alt="FoodLogo"> </td>
-						<td><?= $value['foods.name']; ?> Fried rice</td>
-						<td><?= $value['chefs.name']; ?>Jennifer</td>
+						<td><?= $value['name']; ?></td>
+						<td><?= $value['first_name']; ?></td>
 						<td> 
 							<select>	
 									<option value="small">Small</option>
