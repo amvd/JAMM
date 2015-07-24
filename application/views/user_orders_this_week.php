@@ -1,3 +1,8 @@
+<?php var_dump($this->session->all_userdata()); $session_data = $this->session->all_userdata();
+
+    // var_dump($this->session->userdata('bio'));
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,16 +14,17 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>User's Orders This Week</title>
+    <title>Chef's Orders This Week</title>
 
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
     <style type="text/css">
-    body
+    .status_button
     {
-        padding-top: 70px;
+        width: 230px;
+        height: 50px;
     }
     </style>
 
@@ -77,86 +83,52 @@
 
     <!-- Page Content -->
     <div class="container">
-
+<?=var_dump($orders) ?>
         <div class="row">
-
-            <div class="col-md-3">
-                <p class="lead">Shop Name</p>
-                <div class="list-group">
-                    <a href="/main/user_orders_this_week" class="list-group-item">This Week</a>
-                    <a href="/main/user_orders_this_month" class="list-group-item">This Month</a>
-                    <a href="/main/user_orders_this_lifetime" class="list-group-item">This Lifetime</a>
-                </div>
-            </div>
-
-            <div class="col-md-9">
-
+            <div class="col-md-12">
                 <div class="row">
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
+<?php               foreach ($orders as $order) {
+?>                       
+                    <div class="col-sm-3 col-lg-3 col-md-3">
                         <div class="thumbnail">
                             <img src="http://placehold.it/300x300" alt="">
                             <div class="caption">
-                                <h4 class="pull-right">$24.99</h4>
-                                <h4><a href="#">Monday</a>
-                                </h4>
-                                <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
-                            </div>
-                           
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="http://placehold.it/300x300" alt="">
-                            <div class="caption">
-                                <h4 class="pull-right">$64.99</h4>
-                                <h4><a href="#">Tuesday</a>
-                                </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="http://placehold.it/300x300" alt="">
-                            <div class="caption">
-                                <h4 class="pull-right">$74.99</h4>
-                                <h4><a href="#">Wednesday</a>
-                                </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="http://placehold.it/300x300" alt="">
-                            <div class="caption">
-                                <h4 class="pull-right">$84.99</h4>
-                                <h4><a href="#">Thursday</a>
-                                </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <h4><?= $order['name'] ?></h4>
+                                <h4>$PRICE</h4>
+                                <h4>Qty: <?= $order['qty'] ?></h4>
+                                <h4>Size:<?= $order['size_id'] ?></h4>
+                                <h4>Special Instructions: <p><?= $order['special_instructions'] ?></p></h4>
+                                <h4>Order Date:<p><?= $order['created_at'] ?></p></h4>
+                                <h4>Pick Up Date:<p><?= $order['pickup_date'] ?></p></h4>
+<?php                                
+                                    date_default_timezone_set('America/Los_Angeles');
+                                    $date = date('Y/m/d h:i:s a', time());
+    ?>
+                                <h4>
+<?php 
+                                     echo "in view"; var_dump($order['id']);
+                                    if ($order['fulfilled'] == 0)
+                                    {
+?>                  
+                    <!-- <a href="/chefs/update_fulfilled_status/<?= $order['id'] ?>"> -->
+                    <button type="button" class="btn btn-warning status_button">Pending</button>
+                    </a>
+<?php                               }
+                                    else
+                                    {
+?>               
+                    <button type="button" class="btn btn-success status_button">Picked Up</button>
+                    </a>
+<?php                               }
+?>                              </h4>
                             </div>
                             
                         </div>
                     </div>
+<?php               }
+?>
 
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="http://placehold.it/300x300" alt="">
-                            <div class="caption">
-                                <h4 class="pull-right">$94.99</h4>
-                                <h4><a href="#">Friday</a>
-                                </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                          
-                        </div>
-                    </div>
+                    
 
                 </div>
 
@@ -183,9 +155,9 @@
     </div>
     <!-- /.container -->
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 </body>
 

@@ -24,11 +24,6 @@ class users extends CI_Controller {
 		redirect('/users/user_profile');
 	}
 
-	public function user_orders_this_week()
-	{
-		$this->load->view('user_orders_this_week');
-	}
-
 	public function user_orders()
 	{
 		$this->load->view('partials/orders');
@@ -47,6 +42,26 @@ class users extends CI_Controller {
 	public function order_form()
 	{
 		$this->load->view("order_form");
+	}
+
+	public function user_orders_this_week($orders)
+	{
+		$this->load->view('user_orders_this_week', array('orders' => $orders));
+	}
+
+	public function get_user_orders_this_week()
+	{
+		$orders = $this->user->get_user_orders_this_week($this->input->post());
+		 // echo "in controller"; var_dump($orders); die();
+		$this->user_orders_this_week($orders);
+		
+	}
+
+
+	public function user_update_fulfilled_status($order_id)
+	{
+		$this->user->user_update_fulfilled_status($order_id);
+		redirect('/users/get_user_orders_this_week');
 	}
 
 

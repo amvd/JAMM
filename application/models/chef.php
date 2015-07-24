@@ -41,7 +41,8 @@ class chef extends CI_Model
 
 	public function chef_grab_menu()
 	{
-		 // echo ""; var_dump($this->session->userdata('id')); die();
+		// runs when /chef/chef_grab_menu is triggered and returns a multi dimensional associative array of the menu items the chef enters in.
+		// echo ""; var_dump($this->session->userdata('id')); die();
 		$id = $this->session->userdata('id');
 		$query = "SELECT * FROM Foods
 		LEFT JOIN foods_allergens on foods.id = foods_allergens.food_id
@@ -54,20 +55,18 @@ class chef extends CI_Model
 
 	public function get_chef_orders_this_week($post)
 	{
-		$query = "SELECT orders.id, orders.qty, orders.pickup_date, 
-		orders.special_instructions, orders.fulfilled,
-		orders.created_at, orders.user_id, orders.food_id,
-        foods.id, foods.name, foods.description, foods.food_pic_url, 
-        foods.created_at, foods.chef_id, foods.cuisine_id, 
-        cuisines.type, prices.size_id, sizes.small, sizes.medium, sizes.large, 
-        chefs.first_name, chefs.last_name FROM Orders
-		LEFT JOIN foods on foods.id = orders.food_id
-		LEFT JOIN chefs on chefs.id = foods.chef_id
+		$query = "SELECT orders.id, orders.qty, orders.order_date, orders.pickup_date, orders.special_instructions,
+orders.fulfilled, orders.created_at, orders.user_id, orders.food_id,
+foods.id, foods.name, foods.description, foods.food_pic_url, foods.chef_id, foods.cuisine_id,
+cuisines.id, cuisines.type, prices.id, prices.price, prices.food_id, prices.size_id,
+sizes.id, sizes.type FROM Orders
+		LEFT JOIN users on users.id = orders.user_id
+        LEFT JOIN foods on foods.id = orders.food_id
 		LEFT JOIN cuisines on cuisines.id = foods.cuisine_id
 		LEFT JOIN prices on foods.id = prices.food_id
 		LEFT JOIN sizes on sizes.id = prices.size_id
-		WHERE chefs.id = ?
-		ORDER BY orders.pickup_date DESC";
+		WHERE users.id = ?
+        ORDER BY orders.pickup_date DESC";
 
 		// echo "in model"; var_dump($this->session->all_userdata()); die();
 		$value = array($this->session->userdata('id'))[0];
