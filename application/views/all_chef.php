@@ -80,8 +80,8 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <a href="/foods/all_food_no_filter/<?= $this->session->userdata('city')?>"><h3> Browse all food </h3></a>
+        <div id="sidebar-wrapper"> 
+            <a href="/foods/all_food_by_city/<?= $this->session->userdata('city');?>"><h3> Browse all food </h3></a>
         </div>
         <!-- /#sidebar-wrapper -->
 

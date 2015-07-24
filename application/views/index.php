@@ -202,7 +202,7 @@
 						<br>
 						<div class="city-btn">
 							<a href="/foods/all_food_by_city/San%20Jose" class="btn btn-success col-md-5 col-md-offset-0">Food</a>
-							<a href="#" class="btn btn-success col-md-5 col-md-offset-2">Chefs</a>
+							<a href="/foods/all_chefs_by_city/San%20Jose" class="btn btn-success col-md-5 col-md-offset-2">Chefs</a>
 
 						</div>
 						<div class="clearfix"></div>
@@ -219,7 +219,7 @@
 						<br>
 						<div class="city-btn">
 							<a href="/foods/all_food_by_city/Los%20Angeles" class="btn btn-success col-md-5 col-md-offset-0">Food</a>
-							<a href="/foods/all_food_by_city/Los%20Angeles" class="btn btn-success col-md-5 col-md-offset-2">Chefs</a>
+							<a href="/foods/all_chefs_by_city/Los%20Angeles" class="btn btn-success col-md-5 col-md-offset-2">Chefs</a>
 						</div>
 						<div class="clearfix"></div>
 				</div>
@@ -235,7 +235,7 @@
 						<br>
 						<div class="city-btn">
 							<a href="/foods/all_food_by_city/San%20Francisco" class="btn btn-success col-md-5 col-md-offset-0">Food</a>
-							<a href="/foods/all_food_by_city/San%20Francisco" class="btn btn-success col-md-5 col-md-offset-2">Chefs</a>
+							<a href="/foods/all_chefs_by_city/San%20Francisco" class="btn btn-success col-md-5 col-md-offset-2">Chefs</a>
 						</div>
 						<div class="clearfix"></div>
 				</div>
