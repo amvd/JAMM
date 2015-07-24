@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `jamm` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `jamm`;
--- MySQL dump 10.13  Distrib 5.6.24, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.22, for osx10.8 (x86_64)
 --
 -- Host: 127.0.0.1    Database: jamm
 -- ------------------------------------------------------
--- Server version	5.6.17
+-- Server version	5.5.42
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -63,7 +61,7 @@ CREATE TABLE `carts` (
   KEY `fk_carts_foods1_idx` (`food_id`),
   CONSTRAINT `fk_carts_foods1` FOREIGN KEY (`food_id`) REFERENCES `foods` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_carts_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +70,7 @@ CREATE TABLE `carts` (
 
 LOCK TABLES `carts` WRITE;
 /*!40000 ALTER TABLE `carts` DISABLE KEYS */;
-INSERT INTO `carts` VALUES (3,1,'small',NULL,NULL,'2015-07-23 20:49:52','2015-07-23 20:49:52',1,1),(4,2,'small',NULL,NULL,'2015-07-23 20:53:35','2015-07-23 20:53:35',1,5),(5,NULL,'',NULL,NULL,'2015-07-23 21:00:02','2015-07-23 21:00:02',1,5),(6,9,'medium',NULL,NULL,'2015-07-23 21:00:35','2015-07-23 21:00:35',1,1);
+INSERT INTO `carts` VALUES (3,1,'small','2015-07-12 12:00:00',NULL,'2015-07-23 20:49:52','2015-07-23 20:49:52',1,1),(4,2,'small','2015-07-12 12:00:00',NULL,'2015-07-23 20:53:35','2015-07-23 20:53:35',1,5),(5,2,'medium','2015-07-12 12:00:00',NULL,'2015-07-23 21:00:02','2015-07-23 21:00:02',1,5),(6,9,'medium','2015-07-12 12:00:00',NULL,'2015-07-23 21:00:35','2015-07-23 21:00:35',1,1),(7,3,'medium','2015-07-15 12:00:00','keep it fresh please!','2015-07-12 12:00:00','2015-07-12 12:00:00',1,3),(8,3,'large','2015-07-16 12:00:00','ill pick it up by 1pm!','2015-07-10 12:00:00','2015-07-10 12:00:00',2,1),(9,3,'small','2015-07-17 12:00:00','ill pick it up by 1pm!','2015-07-13 12:00:00','2015-07-10 12:00:00',2,2),(10,3,'large','0000-00-00 00:00:00','ill pick it up by 1pm!','2015-07-14 12:00:00','2015-07-10 12:00:00',2,3),(11,3,'large','2015-07-19 12:00:00','ill pick it up by 1pm!','2015-07-15 12:00:00','2015-07-10 12:00:00',2,1);
 /*!40000 ALTER TABLE `carts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -190,7 +188,7 @@ CREATE TABLE `foods_allergens` (
   KEY `fk_foods_has_allergens_foods1_idx` (`food_id`),
   CONSTRAINT `fk_foods_has_allergens_allergens1` FOREIGN KEY (`allergen_id`) REFERENCES `allergens` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_foods_has_allergens_foods1` FOREIGN KEY (`food_id`) REFERENCES `foods` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -199,7 +197,7 @@ CREATE TABLE `foods_allergens` (
 
 LOCK TABLES `foods_allergens` WRITE;
 /*!40000 ALTER TABLE `foods_allergens` DISABLE KEYS */;
-INSERT INTO `foods_allergens` VALUES (1,3,1),(2,5,1),(3,4,2);
+INSERT INTO `foods_allergens` VALUES (1,3,1),(2,5,1),(19,1,1),(20,2,1),(21,4,1),(22,6,1),(3,4,2),(23,1,2),(24,2,2),(25,3,2),(26,6,2),(27,8,2),(28,4,3),(29,6,3),(30,7,3),(31,5,4),(32,3,4),(33,8,4);
 /*!40000 ALTER TABLE `foods_allergens` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -250,7 +248,7 @@ CREATE TABLE `prices` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `food_id` int(11) NOT NULL,
   `size_id` int(11) NOT NULL,
-  `price` float DEFAULT NULL,
+  `price` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_foods_has_sizes_sizes1_idx` (`size_id`),
   KEY `fk_foods_has_sizes_foods1_idx` (`food_id`),
@@ -265,7 +263,7 @@ CREATE TABLE `prices` (
 
 LOCK TABLES `prices` WRITE;
 /*!40000 ALTER TABLE `prices` DISABLE KEYS */;
-INSERT INTO `prices` VALUES (1,1,1,4.99),(2,1,2,5.99),(3,1,3,6.99),(18,2,2,5.99),(19,2,3,7.99),(20,3,1,5),(21,3,2,6.5),(22,3,3,8),(23,4,2,7.5),(24,5,1,4.5),(25,5,2,5.55),(26,5,3,6.5);
+INSERT INTO `prices` VALUES (1,1,1,4.99),(2,1,2,5.99),(3,1,3,6.99),(18,2,2,5.99),(19,2,3,7.99),(20,3,1,5.00),(21,3,2,6.50),(22,3,3,8.00),(23,4,2,7.50),(24,5,1,4.50),(25,5,2,5.55),(26,5,3,6.50);
 /*!40000 ALTER TABLE `prices` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -358,7 +356,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Jennifer','Kim','5f4dcc3b5aa765d61d8327deb882cf99','jkim@hi.com','4444444444',NULL,NULL,NULL,'123 Delicious Ave','San Jose','CA','95132','2015-07-22 14:52:01','2015-07-22 14:52:01'),(2,'Manju','P','5f4dcc3b5aa765d61d8327deb882cf99','manju@hi.com','3333333333',NULL,NULL,NULL,'222 Delicious Ave','San Jose','CA','95132','2015-07-22 15:37:39','2015-07-22 15:37:39'),(3,'Amanda','Bynes','5f4dcc3b5aa765d61d8327deb882cf99','am@am.com','1231231234',NULL,NULL,NULL,'123 Jo Ave','San Francisco','CA','51515','2015-07-22 23:07:28','2015-07-22 23:07:28');
+INSERT INTO `users` VALUES (1,'Jennifer','Kim','5f4dcc3b5aa765d61d8327deb882cf99','jkim@hi.com','4444444444','Hi! I think im so cool! My other passion is pulling and pushing on git','https://app.box.com/s/pe6ykv4k7l4hmicnaiipmlbz7jldqc8o',NULL,'123 Delicious Ave','San Jose','CA','95132','2015-07-22 14:52:01','2015-07-22 14:52:01'),(2,'Manju','P','5f4dcc3b5aa765d61d8327deb882cf99','manju@hi.com','3333333333','Hi! I love saying mean sarcastic remarks to Mike','https://app.box.com/s/pe6ykv4k7l4hmicnaiipmlbz7jldqc8o',NULL,'222 Delicious Ave','San Jose','CA','95132','2015-07-22 15:37:39','2015-07-22 15:37:39'),(3,'Amanda','Bynes','5f4dcc3b5aa765d61d8327deb882cf99','am@am.com','1231231234','Hi! If i were a guy i\'d want to look as hot as this guy on my profile picture','https://app.box.com/s/3zw1lqsw59cj977amghm1jfosua3irv5',NULL,'123 Jo Ave','San Francisco','CA','51515','2015-07-22 23:07:28','2015-07-22 23:07:28');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -371,4 +369,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-07-24  2:41:35
+-- Dump completed on 2015-07-24 10:04:20
