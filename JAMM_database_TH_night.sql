@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `jamm` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `jamm`;
 -- MySQL dump 10.13  Distrib 5.6.24, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: jamm
@@ -26,18 +24,9 @@ DROP TABLE IF EXISTS `allergens`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `allergens` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `dairy` int(11) DEFAULT NULL COMMENT '\n	',
-  `vegan_vegetarian` int(11) DEFAULT NULL,
-  `gf` int(11) DEFAULT NULL,
-  `peanuts` int(11) DEFAULT NULL,
-  `other_nuts` int(11) DEFAULT NULL,
-  `seafood` int(11) DEFAULT NULL,
-  `eggs` int(11) DEFAULT NULL,
-  `soy` int(11) DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
+  `allergen` varchar(65) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,6 +35,7 @@ CREATE TABLE `allergens` (
 
 LOCK TABLES `allergens` WRITE;
 /*!40000 ALTER TABLE `allergens` DISABLE KEYS */;
+INSERT INTO `allergens` VALUES (1,'dairy'),(2,'vegan'),(3,'vegetarian'),(4,'peanuts'),(5,'tree nuts'),(6,'seafood'),(7,'eggs'),(8,'soy'),(9,'gluten');
 /*!40000 ALTER TABLE `allergens` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,7 +49,7 @@ DROP TABLE IF EXISTS `carts`;
 CREATE TABLE `carts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `qty` int(11) DEFAULT NULL,
-  `food_size` int(11) DEFAULT NULL,
+  `food_size` varchar(10) DEFAULT NULL,
   `pickup_date` datetime DEFAULT NULL,
   `special_instructions` text,
   `created_at` datetime DEFAULT NULL,
@@ -69,9 +59,9 @@ CREATE TABLE `carts` (
   PRIMARY KEY (`id`),
   KEY `fk_carts_users1_idx` (`user_id`),
   KEY `fk_carts_foods1_idx` (`food_id`),
-  CONSTRAINT `fk_carts_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_carts_foods1` FOREIGN KEY (`food_id`) REFERENCES `foods` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_carts_foods1` FOREIGN KEY (`food_id`) REFERENCES `foods` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_carts_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -80,6 +70,7 @@ CREATE TABLE `carts` (
 
 LOCK TABLES `carts` WRITE;
 /*!40000 ALTER TABLE `carts` DISABLE KEYS */;
+INSERT INTO `carts` VALUES (3,1,'small',NULL,NULL,'2015-07-23 20:49:52','2015-07-23 20:49:52',1,1),(4,2,'small',NULL,NULL,'2015-07-23 20:53:35','2015-07-23 20:53:35',1,5),(5,NULL,'',NULL,NULL,'2015-07-23 21:00:02','2015-07-23 21:00:02',1,5),(6,9,'medium',NULL,NULL,'2015-07-23 21:00:35','2015-07-23 21:00:35',1,1);
 /*!40000 ALTER TABLE `carts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -119,7 +110,7 @@ CREATE TABLE `chefs` (
 
 LOCK TABLES `chefs` WRITE;
 /*!40000 ALTER TABLE `chefs` DISABLE KEYS */;
-INSERT INTO `chefs` VALUES (1,'Armand','hello',NULL,'armand@hi.com','5f4dcc3b5aa765d61d8327deb882cf99','9999999999','321 Happyville Ave','San Jose','CA','95132',NULL,NULL,NULL,'2015-07-22 14:08:29','2015-07-22 14:08:29',NULL,NULL),(2,'Mike','Lim',NULL,'mike@hi.com','5f4dcc3b5aa765d61d8327deb882cf99','7777777777','444 Delicious Ave','San Jose','CA','95132',NULL,NULL,NULL,'2015-07-22 15:38:22','2015-07-22 15:38:22',NULL,NULL),(3,'Anthony','Do',NULL,'anthony@hi.com','5f4dcc3b5aa765d61d8327deb882cf99','1234567899','323 Delicious Ave','San Jose','CA','95132',NULL,NULL,NULL,'2015-07-22 15:39:06','2015-07-22 15:39:06',NULL,NULL);
+INSERT INTO `chefs` VALUES (1,'Armand','hello',NULL,'armand@hi.com','5f4dcc3b5aa765d61d8327deb882cf99','9999999999','321 Happyville Ave','San Jose','CA','95132',NULL,NULL,NULL,'2015-07-22 14:08:29','2015-07-22 14:08:29',NULL,NULL),(2,'Mike','Lim',NULL,'mike@hi.com','5f4dcc3b5aa765d61d8327deb882cf99','7777777777','444 Delicious Ave','Los Angeles','CA','95132',NULL,NULL,NULL,'2015-07-22 15:38:22','2015-07-22 15:38:22',NULL,NULL),(3,'Anthony','Do',NULL,'anthony@hi.com','5f4dcc3b5aa765d61d8327deb882cf99','1234567899','323 Delicious Ave','San Francisco','CA','95132',NULL,NULL,NULL,'2015-07-22 15:39:06','2015-07-22 15:39:06',NULL,NULL);
 /*!40000 ALTER TABLE `chefs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -189,15 +180,15 @@ DROP TABLE IF EXISTS `foods_allergens`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `foods_allergens` (
-  `id` int(11) NOT NULL,
-  `food_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `allergen_id` int(11) NOT NULL,
-  PRIMARY KEY (`allergen_id`,`id`),
+  `food_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`,`allergen_id`),
   KEY `fk_foods_has_allergens_allergens1_idx` (`allergen_id`),
   KEY `fk_foods_has_allergens_foods1_idx` (`food_id`),
-  CONSTRAINT `fk_foods_has_allergens_foods1` FOREIGN KEY (`food_id`) REFERENCES `foods` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_foods_has_allergens_allergens1` FOREIGN KEY (`allergen_id`) REFERENCES `allergens` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_foods_has_allergens_allergens1` FOREIGN KEY (`allergen_id`) REFERENCES `allergens` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_foods_has_allergens_foods1` FOREIGN KEY (`food_id`) REFERENCES `foods` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -206,6 +197,7 @@ CREATE TABLE `foods_allergens` (
 
 LOCK TABLES `foods_allergens` WRITE;
 /*!40000 ALTER TABLE `foods_allergens` DISABLE KEYS */;
+INSERT INTO `foods_allergens` VALUES (1,3,1),(2,5,1),(3,4,2);
 /*!40000 ALTER TABLE `foods_allergens` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -256,12 +248,13 @@ CREATE TABLE `prices` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `food_id` int(11) NOT NULL,
   `size_id` int(11) NOT NULL,
+  `price` float DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_foods_has_sizes_sizes1_idx` (`size_id`),
   KEY `fk_foods_has_sizes_foods1_idx` (`food_id`),
   CONSTRAINT `fk_foods_has_sizes_foods1` FOREIGN KEY (`food_id`) REFERENCES `foods` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_foods_has_sizes_sizes1` FOREIGN KEY (`size_id`) REFERENCES `sizes` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -270,6 +263,7 @@ CREATE TABLE `prices` (
 
 LOCK TABLES `prices` WRITE;
 /*!40000 ALTER TABLE `prices` DISABLE KEYS */;
+INSERT INTO `prices` VALUES (1,1,1,4.99),(2,1,2,5.99),(3,1,3,6.99),(18,2,2,5.99),(19,2,3,7.99),(20,3,1,5),(21,3,2,6.5),(22,3,3,8),(23,4,2,7.5),(24,5,1,4.5),(25,5,2,5.55),(26,5,3,6.5);
 /*!40000 ALTER TABLE `prices` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -314,11 +308,9 @@ DROP TABLE IF EXISTS `sizes`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sizes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `small` varchar(45) DEFAULT NULL,
-  `medium` varchar(45) DEFAULT NULL,
-  `large` varchar(45) DEFAULT NULL,
+  `type` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -327,6 +319,7 @@ CREATE TABLE `sizes` (
 
 LOCK TABLES `sizes` WRITE;
 /*!40000 ALTER TABLE `sizes` DISABLE KEYS */;
+INSERT INTO `sizes` VALUES (1,'small'),(2,'medium'),(3,'large');
 /*!40000 ALTER TABLE `sizes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -354,7 +347,7 @@ CREATE TABLE `users` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -363,7 +356,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Jennifer','Kim','5f4dcc3b5aa765d61d8327deb882cf99','jkim@hi.com','4444444444',NULL,NULL,NULL,'123 Delicious Ave','San Jose','CA','95132','2015-07-22 14:52:01','2015-07-22 14:52:01'),(2,'Manju','P','5f4dcc3b5aa765d61d8327deb882cf99','manju@hi.com','3333333333',NULL,NULL,NULL,'222 Delicious Ave','San Jose','CA','95132','2015-07-22 15:37:39','2015-07-22 15:37:39');
+INSERT INTO `users` VALUES (1,'Jennifer','Kim','5f4dcc3b5aa765d61d8327deb882cf99','jkim@hi.com','4444444444',NULL,NULL,NULL,'123 Delicious Ave','San Jose','CA','95132','2015-07-22 14:52:01','2015-07-22 14:52:01'),(2,'Manju','P','5f4dcc3b5aa765d61d8327deb882cf99','manju@hi.com','3333333333',NULL,NULL,NULL,'222 Delicious Ave','San Jose','CA','95132','2015-07-22 15:37:39','2015-07-22 15:37:39'),(3,'Amanda','Bynes','5f4dcc3b5aa765d61d8327deb882cf99','am@am.com','1231231234',NULL,NULL,NULL,'123 Jo Ave','San Francisco','CA','51515','2015-07-22 23:07:28','2015-07-22 23:07:28');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -376,4 +369,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-07-22 18:25:24
+-- Dump completed on 2015-07-23 21:07:59
