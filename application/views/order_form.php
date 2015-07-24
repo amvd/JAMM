@@ -76,15 +76,17 @@
 			
 			<h3>Order Details:</h3>
 			<table class="table table-striped">
+				<thead>
 				<tr>
-					<td> </td>
-					<td>Food Item</td>
-					<td>Chef</td>
-					<td>Size</td>
-					<td>Quantity</td>
-					<td>Pickup Date</td>
-					<td>Price</td>
+					<th> </th>
+					<th>Food Item</th>
+					<th>Chef</th>
+					<th>Size</th>
+					<th>Quantity</th>
+					<th>Pickup Date</th>
+					<th>Price</th>
 				</tr>
+				</thead>
 				<tr>
 					<td><img src="http://goodtoknow.media.ipcdigital.co.uk/111/00000cb9d/9159/Red-Thai-chicken-bean-and-bamboo-curry.jpg" alt="FoodLogo"> </td>
 					<td>Fried rice</td>
