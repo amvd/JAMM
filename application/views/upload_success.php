@@ -15,6 +15,45 @@
 	
 </head>
 <body>
+<div class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">
+                    <img alt="logo" src="/assets/images/logo.png" style="height: 150%">
+                </a>
+            </div>
+        <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" name="city" placeholder="City">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="cuisine" placeholder="Cuisine">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="chef" placeholder="Chef Name">
+            </div>
+            <button type="submit" class="btn btn-success">Search</button>
+        </form>
+                <ul class="nav navbar-nav navbar-right">
+<?php
+                if ($this->session->userdata('user_type') == "user") { ?>
+                    <li><a href="/foods/display_cart/"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> (<?= $cart_qty['qty'] ?>)</a></li>
+                    <li><a href="/users/user_profile/<?= $this->session->userdata('id') ?>">User Account</a></li>
+                    <li><a href="/logins/logout">Logout</a></li>
+<?php           } 
+                elseif ($this->session->userdata('user_type') == "chef") { ?>
+                    <li><a href=""><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> (<?= $cart_qty['qty'] ?>)</a></li>
+                    <li><a href="/chefs/chef_profile/<?= $this->session->userdata('id') ?>">Chef Account</a></li> 
+                    <li><a href="/logins/logout">Logout</a></li> 
+<?php           } 
+                else { ?>
+                    <li><a href="/logins/login_page">Login/Register</a></li>
+<?php           } ?>
+                </ul>
+        </div>
+    </nav>
+</div>
 <br>
 <br>
 <br>

@@ -57,19 +57,18 @@
                 <ul class="nav navbar-nav navbar-right">
 <?php
                 if ($this->session->userdata('user_type') == "user") { ?>
-                    <li><a href="/users/user_profile/<?= $session_data['id'] ?>">User Account</a></li>
+                    <li><a href="/foods/display_cart/"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> (<?= $cart_qty['qty'] ?>)</a></li>
+                    <li><a href="/users/user_profile/<?= $this->session->userdata('id') ?>">User Account</a></li>
                     <li><a href="/logins/logout">Logout</a></li>
 <?php           } 
-                  elseif ($this->session->userdata('user_type') == "chef") { ?>
-                    <li><a href="/chefs/chef_profile/<?= $session_data['id'] ?>">Chef Account</a></li> 
+                elseif ($this->session->userdata('user_type') == "chef") { ?>
+                    <li><a href=""><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> (<?= $cart_qty['qty'] ?>)</a></li>
+                    <li><a href="/chefs/chef_profile/<?= $this->session->userdata('id') ?>">Chef Account</a></li> 
                     <li><a href="/logins/logout">Logout</a></li> 
-<?php           
-                } else {
-?>
+<?php           } 
+                else { ?>
                     <li><a href="/logins/login_page">Login/Register</a></li>
-<?php
-                }
-?>
+<?php           } ?>
                 </ul>
         </div>
     </nav>

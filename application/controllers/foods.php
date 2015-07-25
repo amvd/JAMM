@@ -39,6 +39,7 @@ class foods extends CI_Controller {
 		$all_food = $this->Food->get_foods_by_city($city);
 		$food_by_cuisine = $this->Food->get_foods_by_cuisine($cuisine_type, urldecode($city));
 		$cart_qty = $this->Food->get_cart($this->session->userdata('id'));
+		$this->session->set_userdata("cart", $cart_qty);
 		$this->load->view('all_food', array('food_info' => $food_by_cuisine,
 																				'all_food' => $all_food,
 																				'cart_qty'=> $cart_qty));	}
